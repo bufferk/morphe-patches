@@ -1,13 +1,13 @@
-group = "app.morphe"
+group = "app.bounce"
 
 patches {
     about {
-        name = "XYZ Patches for use with Morphe"
-        description = "Example patches"
-        source = "git@github.com:MorpheApp/morphe-patches-template.git"
-        author = "Awesome dev"
-        contact = "na"
-        website = "https://morphe.software"
+        name = "bufferk patches"
+        description = "bufferk patches"
+        author = "bufferk"
+        website = "https://github.com/bufferk/morphe-patches"
+        source = "git@github.com:bufferk/morphe-patches"
+        contact = ""
         license = "GPLv3"
     }
 }
