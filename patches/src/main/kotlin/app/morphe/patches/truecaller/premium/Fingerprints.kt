@@ -23,12 +23,8 @@ internal object AttributesDTOToStringFingerprint : Fingerprint(
 /**
  * Fingerprint for k.b() — the isPremium getter.
  *
- * This is the SharedPreferences-backed source of truth for premium status.
- * It reads "isPremiumExpired" (defaults to true) and inverts it, so it returns
- * false (not premium) by default. We patch it to always return true.
- *
- * Class: com.truecaller.premium.data.k
- * Method: b()Z — unique because it reads "isPremiumExpired" then XORs with 1.
+ * Reads "isPremiumExpired" from SharedPreferences and XORs with 1 → false by default.
+ * We patch to always return true (is premium).
  */
 internal object PremiumStatusPrefsFingerprint : Fingerprint(
     definingClass = "Lcom/truecaller/premium/data/k;",
@@ -40,8 +36,8 @@ internal object PremiumStatusPrefsFingerprint : Fingerprint(
 /**
  * Fingerprint for k.S1() — the premium tier getter.
  *
- * Reads "premiumLevel" from SharedPreferences (defaults to FREE) and returns
- * the corresponding PremiumTierType. We patch it to always return GOLD.
+ * Reads "premiumLevel" from SharedPreferences (defaults to FREE).
+ * We patch to always return GOLD.
  */
 internal object PremiumTierPrefsFingerprint : Fingerprint(
     definingClass = "Lcom/truecaller/premium/data/k;",
@@ -53,9 +49,8 @@ internal object PremiumTierPrefsFingerprint : Fingerprint(
 /**
  * Fingerprint for k.c1() — the shouldShowAds getter.
  *
- * Reads "shouldShowAds" from SharedPreferences (defaults to false). We force
- * it to always return false so the ad system never activates regardless of
- * any network flag that might enable it.
+ * Reads "shouldShowAds" from SharedPreferences.
+ * We force to always return false.
  */
 internal object ShouldShowAdsPrefsFingerprint : Fingerprint(
     definingClass = "Lcom/truecaller/premium/data/k;",
@@ -65,11 +60,8 @@ internal object ShouldShowAdsPrefsFingerprint : Fingerprint(
 )
 
 /**
- * Fingerprint for the PremiumState constructor (obfuscated class zz1/n1).
- * Matched via the unique null-check strings "tier" and "productKind" that only
- * appear in this constructor body. The first IPUT_BOOLEAN is isPremium (field a:Z)
- * and the first IPUT_OBJECT is tier (field b:PremiumTierType).
- * Used as a belt-and-suspenders patch for cached/deserialized PremiumState paths.
+ * Fingerprint for PremiumState (zz1/n1) constructor.
+ * Belt-and-suspenders patch for cached/deserialized PremiumState paths.
  */
 internal object PremiumStateConstructorFingerprint : Fingerprint(
     definingClass = "Lzz1/n1;",
@@ -79,12 +71,33 @@ internal object PremiumStateConstructorFingerprint : Fingerprint(
 )
 
 /**
- * Fingerprint for the FullScreenPaywallActivity onCreate method.
- * NavDrawerPaywallActivity and UpgradePathPaywallActivity both inherit this method,
- * so patching it here covers all three paywall screens.
+ * Fingerprint for FullScreenPaywallActivity.onCreate.
+ * Covers all paywall subclasses (NavDrawer, UpgradePath, NonCarrierSupport) via inheritance.
  */
 internal object FullScreenPaywallOnCreateFingerprint : Fingerprint(
     definingClass = "Lcom/truecaller/premium/FullScreenPaywallActivity;",
     name = "onCreate",
     returnType = "V"
+)
+
+/**
+ * Fingerprint for g02/e.a(PremiumFeatureStatus)Z — the universal feature-gate checker.
+ *
+ * Every client-side feature availability check funnels through:
+ *   bar.a(featureList, PremiumFeature) → g02/e.a(status) → (status == INCLUDED)
+ *
+ * Patching this to always return true unlocks all features guarded by availableFeatures:
+ *   callRecording, whoViewedMe, incognitoMode, ghostCall, callAssistant, announceCall,
+ *   AICallScanner, contactRequest, extendedSpamBlocking, goldCallerId, verifiedBadge,
+ *   premiumBadge, premiumSupport, noAds, fraudInsurance, familySharing, WhatsAppCallerId.
+ *
+ * Unique identifier: the tiny class body contains only a Kotlin null-check "<this>" string
+ * and a single SGET of PremiumFeatureStatus.INCLUDED before the comparison.
+ */
+internal object IsFeatureIncludedFingerprint : Fingerprint(
+    definingClass = "Lg02/e;",
+    name = "a",
+    returnType = "Z",
+    parameters = listOf("Lcom/truecaller/premium/data/feature/PremiumFeatureStatus;"),
+    strings = listOf("<this>")
 )
