@@ -1,3 +1,10 @@
+## [1.0.4](https://github.com/hackingguy/morphe-patches/compare/v1.0.3...v1.0.4) (2026-04-05)
+
+
+### Bug Fixes
+
+* add gold tier to truecaller ([b15ca8e](https://github.com/hackingguy/morphe-patches/commit/b15ca8ec021a2dd2e077c6d2098f0c37a7b203aa))
+
 ## [1.0.3](https://github.com/hackingguy/morphe-patches/compare/v1.0.2...v1.0.3) (2026-04-05)
 
 
