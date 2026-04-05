@@ -1,3 +1,10 @@
+# [1.1.0](https://github.com/hackingguy/morphe-patches/compare/v1.0.5...v1.1.0) (2026-04-05)
+
+
+### Features
+
+* add more truecaller patches ([f91304c](https://github.com/hackingguy/morphe-patches/commit/f91304cfeecd1b9ef94aaf08ed54a7f90d177644))
+
 ## [1.0.5](https://github.com/hackingguy/morphe-patches/compare/v1.0.4...v1.0.5) (2026-04-05)
 
 
