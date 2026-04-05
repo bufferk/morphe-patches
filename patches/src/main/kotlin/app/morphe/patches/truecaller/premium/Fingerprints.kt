@@ -21,10 +21,55 @@ internal object AttributesDTOToStringFingerprint : Fingerprint(
 )
 
 /**
+ * Fingerprint for k.b() — the isPremium getter.
+ *
+ * This is the SharedPreferences-backed source of truth for premium status.
+ * It reads "isPremiumExpired" (defaults to true) and inverts it, so it returns
+ * false (not premium) by default. We patch it to always return true.
+ *
+ * Class: com.truecaller.premium.data.k
+ * Method: b()Z — unique because it reads "isPremiumExpired" then XORs with 1.
+ */
+internal object PremiumStatusPrefsFingerprint : Fingerprint(
+    definingClass = "Lcom/truecaller/premium/data/k;",
+    name = "b",
+    returnType = "Z",
+    strings = listOf("isPremiumExpired")
+)
+
+/**
+ * Fingerprint for k.S1() — the premium tier getter.
+ *
+ * Reads "premiumLevel" from SharedPreferences (defaults to FREE) and returns
+ * the corresponding PremiumTierType. We patch it to always return GOLD.
+ */
+internal object PremiumTierPrefsFingerprint : Fingerprint(
+    definingClass = "Lcom/truecaller/premium/data/k;",
+    name = "S1",
+    returnType = "Lcom/truecaller/premium/data/tier/PremiumTierType;",
+    strings = listOf("premiumLevel")
+)
+
+/**
+ * Fingerprint for k.c1() — the shouldShowAds getter.
+ *
+ * Reads "shouldShowAds" from SharedPreferences (defaults to false). We force
+ * it to always return false so the ad system never activates regardless of
+ * any network flag that might enable it.
+ */
+internal object ShouldShowAdsPrefsFingerprint : Fingerprint(
+    definingClass = "Lcom/truecaller/premium/data/k;",
+    name = "c1",
+    returnType = "Z",
+    strings = listOf("shouldShowAds")
+)
+
+/**
  * Fingerprint for the PremiumState constructor (obfuscated class zz1/n1).
  * Matched via the unique null-check strings "tier" and "productKind" that only
  * appear in this constructor body. The first IPUT_BOOLEAN is isPremium (field a:Z)
  * and the first IPUT_OBJECT is tier (field b:PremiumTierType).
+ * Used as a belt-and-suspenders patch for cached/deserialized PremiumState paths.
  */
 internal object PremiumStateConstructorFingerprint : Fingerprint(
     definingClass = "Lzz1/n1;",
