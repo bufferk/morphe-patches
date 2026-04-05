@@ -1,3 +1,10 @@
+## [1.0.5](https://github.com/hackingguy/morphe-patches/compare/v1.0.4...v1.0.5) (2026-04-05)
+
+
+### Bug Fixes
+
+* fix at4k patch ([4ccdf22](https://github.com/hackingguy/morphe-patches/commit/4ccdf22c4d384518c282045ecaab96689ecadb32))
+
 ## [1.0.4](https://github.com/hackingguy/morphe-patches/compare/v1.0.3...v1.0.4) (2026-04-05)
 
 
