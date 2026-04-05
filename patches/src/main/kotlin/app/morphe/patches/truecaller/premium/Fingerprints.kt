@@ -31,16 +31,6 @@ internal object PremiumStateToStringFingerprint : Fingerprint(
 )
 
 /**
- * Fingerprint for the NavDrawerPaywallActivity onCreate method.
- * This activity shows the "Get Premium" prompt from the navigation drawer.
- */
-internal object NavDrawerPaywallOnCreateFingerprint : Fingerprint(
-    definingClass = "Lcom/truecaller/premium/NavDrawerPaywallActivity;",
-    name = "onCreate",
-    returnType = "V"
-)
-
-/**
  * Fingerprint for the FullScreenPaywallActivity onCreate method.
  * This activity shows the full-screen premium upgrade paywall.
  */
@@ -50,12 +40,3 @@ internal object FullScreenPaywallOnCreateFingerprint : Fingerprint(
     returnType = "V"
 )
 
-/**
- * Fingerprint for the UpgradePathPaywallActivity onCreate method.
- * This activity shows the upgrade path paywall screen.
- */
-internal object UpgradePathPaywallOnCreateFingerprint : Fingerprint(
-    definingClass = "Lcom/truecaller/premium/UpgradePathPaywallActivity;",
-    name = "onCreate",
-    returnType = "V"
-)
