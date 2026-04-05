@@ -1,3 +1,10 @@
+## [1.0.1](https://github.com/hackingguy/morphe-patches/compare/v1.0.0...v1.0.1) (2026-04-05)
+
+
+### Bug Fixes
+
+* fix truecaller patch ([36a1c40](https://github.com/hackingguy/morphe-patches/commit/36a1c4055086762e7ecc012e7b9abf660cf01770))
+
 # 1.0.0 (2026-04-05)
 
 
