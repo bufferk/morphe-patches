@@ -7,34 +7,28 @@
 package app.morphe.patches.truecaller.ad
 
 import app.morphe.patcher.Fingerprint
-import com.android.tools.smali.dexlib2.AccessFlags
 
 /**
- * Fingerprint for the after-call screen (ACS) presenter ad loader.
- * Matches the loadAds method in AfterCallBasePresenter.
- */
-internal object AfterCallLoadAdsFingerprint : Fingerprint(
-    definingClass = "Lcom/truecaller/acs/ui/AfterCallBasePresenter;",
-    name = "loadAds",
-    returnType = "V",
-    accessFlags = listOf(AccessFlags.PUBLIC, AccessFlags.FINAL)
-)
-
-/**
- * Fingerprint for the ad refresh/update method in the after-call presenter.
+ * Fingerprint for the after-call screen maybeUpdateAd method.
+ * In v26.10 the class is obfuscated to baz; maybeUpdateAd is obfuscated to Rh(Z)V.
+ * We identify it via the unique "Soft throttle" string nearby in the same class,
+ * and match on the method that creates baz$baz (the maybeUpdateAd lambda).
  */
 internal object AfterCallMaybeUpdateAdFingerprint : Fingerprint(
-    definingClass = "Lcom/truecaller/acs/ui/AfterCallBasePresenter;",
-    name = "maybeUpdateAd",
-    returnType = "V"
+    definingClass = "Lcom/truecaller/acs/ui/baz;",
+    name = "Rh",
+    returnType = "V",
+    parameters = listOf("Z")
 )
 
 /**
- * Fingerprint for the Neo (new) after-call screen presenter ad loader.
+ * Fingerprint for the Neo ACS maybeUpdateAd equivalent.
+ * In v26.10 the class is obfuscated to tw1/f;
+ * The method Th(Z)V is the equivalent loadAds/maybeUpdateAd entrypoint.
  */
-internal object NeoAcsLoadAdsFingerprint : Fingerprint(
-    definingClass = "Lcom/truecaller/neo/acs/ui/NeoAcsBasePresenter;",
-    name = "loadAds",
+internal object NeoAcsMaybeUpdateAdFingerprint : Fingerprint(
+    definingClass = "Ltw1/f;",
+    name = "Th",
     returnType = "V",
-    accessFlags = listOf(AccessFlags.PUBLIC, AccessFlags.FINAL)
+    parameters = listOf("Z")
 )

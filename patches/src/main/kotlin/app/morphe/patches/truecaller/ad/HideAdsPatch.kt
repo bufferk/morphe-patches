@@ -18,20 +18,14 @@ val hideAdsPatch = bytecodePatch(
     compatibleWith(COMPATIBILITY_TRUECALLER)
 
     execute {
-        // Return early from the after-call screen (ACS) ad loader so ads are never requested.
-        AfterCallLoadAdsFingerprint.method.addInstructions(
-            0,
-            "return-void"
-        )
-
-        // Return early from the ad refresh/update method so no new ads are ever shown.
+        // Return early from the after-call screen ad update method so ads are never shown.
         AfterCallMaybeUpdateAdFingerprint.method.addInstructions(
             0,
             "return-void"
         )
 
-        // Return early from the Neo (new UI) after-call screen ad loader.
-        NeoAcsLoadAdsFingerprint.method.addInstructions(
+        // Return early from the Neo (new UI) after-call screen ad update method.
+        NeoAcsMaybeUpdateAdFingerprint.method.addInstructions(
             0,
             "return-void"
         )

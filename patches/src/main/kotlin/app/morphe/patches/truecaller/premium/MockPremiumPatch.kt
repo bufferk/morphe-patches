@@ -84,14 +84,7 @@ val mockPremiumPatch = bytecodePatch(
 
         premiumStateConstructorFingerprint.let {
             it.method.apply {
-                val isPremiumMatchIndex = it.instructionMatches[0].index
-                val isPremiumRegister = getInstruction<TwoRegisterInstruction>(isPremiumMatchIndex).registerA
-
-                // Overwrite the register that is about to be stored as isPremium with true.
-                addInstructions(
-                    isPremiumMatchIndex,
-                    "const/4 v$isPremiumRegister, 0x1"
-                )
+                // Process in reverse index order so earlier insertions don't shift later indices.
 
                 val tierMatchIndex = it.instructionMatches[1].index
                 val tierRegister = getInstruction<TwoRegisterInstruction>(tierMatchIndex).registerA
@@ -100,6 +93,15 @@ val mockPremiumPatch = bytecodePatch(
                 addInstructions(
                     tierMatchIndex,
                     "sget-object v$tierRegister, Lcom/truecaller/premium/data/tier/PremiumTierType;->GOLD:Lcom/truecaller/premium/data/tier/PremiumTierType;"
+                )
+
+                val isPremiumMatchIndex = it.instructionMatches[0].index
+                val isPremiumRegister = getInstruction<TwoRegisterInstruction>(isPremiumMatchIndex).registerA
+
+                // Overwrite the register that is about to be stored as isPremium with true.
+                addInstructions(
+                    isPremiumMatchIndex,
+                    "const/4 v$isPremiumRegister, 0x1"
                 )
             }
         }
