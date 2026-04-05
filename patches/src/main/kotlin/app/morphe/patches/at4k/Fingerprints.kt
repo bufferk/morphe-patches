@@ -10,16 +10,19 @@ private const val MAIN_ACTIVITY_CLASS = "Lcom/overdevs/at4k/MainActivity;"
 
 /**
  * Fingerprint for O3.j(boolean) — the central premium status setter.
- * Unique identifier: "Premium status updated to " log string.
+ * Strings appear in this order in the bytecode:
+ *   1. "launcher_prefs"   — SharedPreferences file name
+ *   2. "is_premium"       — the key being written
+ *   3. "Premium status updated to " — the log message
  */
 object SetPremiumStatusFingerprint : Fingerprint(
-    accessFlags = listOf(AccessFlags.PUBLIC, AccessFlags.STATIC),
     returnType = "V",
     parameters = listOf("Z"),
 
     filters = listOf(
-        string("Premium status updated to "),
+        string("launcher_prefs"),
         string("is_premium"),
+        string("Premium status updated to "),
     ),
 
     custom = { _, classDef ->
