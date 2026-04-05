@@ -16,27 +16,30 @@ import com.android.tools.smali.dexlib2.AccessFlags
  */
 internal object AttributesDTOToStringFingerprint : Fingerprint(
     returnType = "Ljava/lang/String;",
-    accessFlags = listOf(AccessFlags.PUBLIC), // Removed FINAL because it's not final in newer versions
+    accessFlags = listOf(AccessFlags.PUBLIC), // not FINAL in v26.10
     strings = listOf("AttributesDTO(isPremium=")
 )
 
 /**
- * Fingerprint for the PremiumState toString method.
- * We use this to locate the core PremiumState class and resolve its fields.
+ * Fingerprint for the PremiumState constructor (obfuscated class zz1/n1).
+ * Matched via the unique null-check strings "tier" and "productKind" that only
+ * appear in this constructor body. The first IPUT_BOOLEAN is isPremium (field a:Z)
+ * and the first IPUT_OBJECT is tier (field b:PremiumTierType).
  */
-internal object PremiumStateToStringFingerprint : Fingerprint(
-    returnType = "Ljava/lang/String;",
-    accessFlags = listOf(AccessFlags.PUBLIC, AccessFlags.FINAL),
-    strings = listOf("PremiumState(isPremium=")
+internal object PremiumStateConstructorFingerprint : Fingerprint(
+    definingClass = "Lzz1/n1;",
+    name = "<init>",
+    returnType = "V",
+    strings = listOf("tier", "productKind")
 )
 
 /**
  * Fingerprint for the FullScreenPaywallActivity onCreate method.
- * This activity shows the full-screen premium upgrade paywall.
+ * NavDrawerPaywallActivity and UpgradePathPaywallActivity both inherit this method,
+ * so patching it here covers all three paywall screens.
  */
 internal object FullScreenPaywallOnCreateFingerprint : Fingerprint(
     definingClass = "Lcom/truecaller/premium/FullScreenPaywallActivity;",
     name = "onCreate",
     returnType = "V"
 )
-
