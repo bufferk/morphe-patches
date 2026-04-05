@@ -24,13 +24,14 @@ val mockPremiumPatch = bytecodePatch(
     compatibleWith(COMPATIBILITY_TRUECALLER)
 
     execute {
+        // ── AttributesDTO ──────────────────────────────────────────────────────────
         // Locate the isPremium field reference from the AttributesDTO toString method.
         // The toString string starts with "AttributesDTO(isPremium=" which immediately
         // precedes the IGET_BOOLEAN that reads the isPremium field.
         val isPremiumField = AttributesDTOToStringFingerprint.method
             .findFieldFromToString("AttributesDTO(isPremium=")
 
-        // Now build a constructor fingerprint that targets the specific IPUT_BOOLEAN
+        // Build a constructor fingerprint that targets the specific IPUT_BOOLEAN
         // that writes isPremium in the AttributesDTO constructor.
         val attributesDTOConstructorFingerprint = Fingerprint(
             definingClass = AttributesDTOToStringFingerprint.originalClassDef.type,
@@ -58,50 +59,52 @@ val mockPremiumPatch = bytecodePatch(
             }
         }
 
-        // Locate the isPremium and tier fields from the PremiumState toString method.
-        val premiumIsPremiumField = PremiumStateToStringFingerprint.method
-            .findFieldFromToString("PremiumState(isPremium=")
-        val premiumTierField = PremiumStateToStringFingerprint.method
-            .findFieldFromToString(", tier=")
+        // ── PremiumState ───────────────────────────────────────────────────────────
+        // Use the static constructor fingerprint (matched via unique strings "tier",
+        // "productKind" inside the constructor body) rather than a dynamic one built
+        // from fieldAccess references – which fails because FieldReference equality
+        // doesn't hold across different instruction types (IGET vs IPUT).
+        PremiumStateConstructorFingerprint.method.apply {
+            val instructions = implementation!!.instructions.toList()
 
-        // Build a constructor fingerprint that targets the IPUT_BOOLEAN and IPUT_OBJECT
-        // that write isPremium and tier in the PremiumState constructor.
-        val premiumStateConstructorFingerprint = Fingerprint(
-            definingClass = PremiumStateToStringFingerprint.originalClassDef.type,
-            name = "<init>",
-            returnType = "V",
-            filters = listOf(
-                fieldAccess(
-                    opcode = Opcode.IPUT_BOOLEAN,
-                    reference = premiumIsPremiumField
-                ),
-                fieldAccess(
-                    opcode = Opcode.IPUT_OBJECT,
-                    reference = premiumTierField
-                )
-            )
-        )
+            // Find the first IPUT_BOOLEAN – this is "isPremium" (field a:Z).
+            val isPremiumIndex = instructions.indexOfFirst {
+                it.opcode == Opcode.IPUT_BOOLEAN
+            }
 
-        premiumStateConstructorFingerprint.let {
-            it.method.apply {
-                // Process in reverse index order so earlier insertions don't shift later indices.
+            // Find the first IPUT_OBJECT – this is "tier" (field b:PremiumTierType).
+            val tierIndex = instructions.indexOfFirst {
+                it.opcode == Opcode.IPUT_OBJECT
+            }
 
-                val tierMatchIndex = it.instructionMatches[1].index
-                val tierRegister = getInstruction<TwoRegisterInstruction>(tierMatchIndex).registerA
+            check(isPremiumIndex != -1) { "isPremium IPUT_BOOLEAN not found in PremiumState constructor" }
+            check(tierIndex != -1) { "tier IPUT_OBJECT not found in PremiumState constructor" }
 
-                // Overwrite the register that is about to be stored as tier with GOLD.
+            // Inject in reverse order (higher index first) so the first insertion
+            // does not shift the second target index.
+            val injectTierFirst = tierIndex > isPremiumIndex
+
+            if (injectTierFirst) {
+                val tierRegister = getInstruction<TwoRegisterInstruction>(tierIndex).registerA
                 addInstructions(
-                    tierMatchIndex,
+                    tierIndex,
                     "sget-object v$tierRegister, Lcom/truecaller/premium/data/tier/PremiumTierType;->GOLD:Lcom/truecaller/premium/data/tier/PremiumTierType;"
                 )
-
-                val isPremiumMatchIndex = it.instructionMatches[0].index
-                val isPremiumRegister = getInstruction<TwoRegisterInstruction>(isPremiumMatchIndex).registerA
-
-                // Overwrite the register that is about to be stored as isPremium with true.
+                val isPremiumRegister = getInstruction<TwoRegisterInstruction>(isPremiumIndex).registerA
                 addInstructions(
-                    isPremiumMatchIndex,
+                    isPremiumIndex,
                     "const/4 v$isPremiumRegister, 0x1"
+                )
+            } else {
+                val isPremiumRegister = getInstruction<TwoRegisterInstruction>(isPremiumIndex).registerA
+                addInstructions(
+                    isPremiumIndex,
+                    "const/4 v$isPremiumRegister, 0x1"
+                )
+                val tierRegister = getInstruction<TwoRegisterInstruction>(tierIndex + 1).registerA
+                addInstructions(
+                    tierIndex + 1,
+                    "sget-object v$tierRegister, Lcom/truecaller/premium/data/tier/PremiumTierType;->GOLD:Lcom/truecaller/premium/data/tier/PremiumTierType;"
                 )
             }
         }
