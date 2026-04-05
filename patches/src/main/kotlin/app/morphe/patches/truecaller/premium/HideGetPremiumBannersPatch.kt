@@ -27,9 +27,7 @@ val hideGetPremiumBannersPatch = bytecodePatch(
         """
 
         listOf(
-            NavDrawerPaywallOnCreateFingerprint,
-            FullScreenPaywallOnCreateFingerprint,
-            UpgradePathPaywallOnCreateFingerprint
+            FullScreenPaywallOnCreateFingerprint
         ).forEach { fingerprint ->
             fingerprint.method.addInstructions(0, finishAndReturn)
         }
