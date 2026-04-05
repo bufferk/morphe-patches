@@ -1,0 +1,14 @@
+# 1.0.0 (2026-04-05)
+
+
+### Bug Fixes
+
+* fix missing file ([6aa5ff1](https://github.com/hackingguy/morphe-patches/commit/6aa5ff13947f752a92de35158d8db04e8c536e17))
+* fix patch generator ([3aa3aa6](https://github.com/hackingguy/morphe-patches/commit/3aa3aa68eb6d45f73330bc4badccee01e6b8db5e))
+* fixed truecaller patch ([20194d9](https://github.com/hackingguy/morphe-patches/commit/20194d94cbd59759a32285ddea2620a085d42725))
+* remove gpg check ([0a15d7b](https://github.com/hackingguy/morphe-patches/commit/0a15d7b6a43ac1459396c48f6e3d937444781081))
+
+
+### Features
+
+* Added patches for at4k and bounce ([86886d0](https://github.com/hackingguy/morphe-patches/commit/86886d0f0e42fa31b57e15862f30289579163f33))
