@@ -57,5 +57,51 @@ val mockPremiumPatch = bytecodePatch(
                 )
             }
         }
+
+        // Locate the isPremium and tier fields from the PremiumState toString method.
+        val premiumIsPremiumField = PremiumStateToStringFingerprint.method
+            .findFieldFromToString("PremiumState(isPremium=")
+        val premiumTierField = PremiumStateToStringFingerprint.method
+            .findFieldFromToString(", tier=")
+
+        // Build a constructor fingerprint that targets the IPUT_BOOLEAN and IPUT_OBJECT
+        // that write isPremium and tier in the PremiumState constructor.
+        val premiumStateConstructorFingerprint = Fingerprint(
+            definingClass = PremiumStateToStringFingerprint.originalClassDef.type,
+            name = "<init>",
+            returnType = "V",
+            filters = listOf(
+                fieldAccess(
+                    opcode = Opcode.IPUT_BOOLEAN,
+                    reference = premiumIsPremiumField
+                ),
+                fieldAccess(
+                    opcode = Opcode.IPUT_OBJECT,
+                    reference = premiumTierField
+                )
+            )
+        )
+
+        premiumStateConstructorFingerprint.let {
+            it.method.apply {
+                val isPremiumMatchIndex = it.instructionMatches[0].index
+                val isPremiumRegister = getInstruction<TwoRegisterInstruction>(isPremiumMatchIndex).registerA
+
+                // Overwrite the register that is about to be stored as isPremium with true.
+                addInstructions(
+                    isPremiumMatchIndex,
+                    "const/4 v$isPremiumRegister, 0x1"
+                )
+
+                val tierMatchIndex = it.instructionMatches[1].index
+                val tierRegister = getInstruction<TwoRegisterInstruction>(tierMatchIndex).registerA
+
+                // Overwrite the register that is about to be stored as tier with GOLD.
+                addInstructions(
+                    tierMatchIndex,
+                    "sget-object v$tierRegister, Lcom/truecaller/premium/data/tier/PremiumTierType;->GOLD:Lcom/truecaller/premium/data/tier/PremiumTierType;"
+                )
+            }
+        }
     }
 }
