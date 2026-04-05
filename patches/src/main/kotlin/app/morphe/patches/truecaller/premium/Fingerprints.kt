@@ -16,8 +16,18 @@ import com.android.tools.smali.dexlib2.AccessFlags
  */
 internal object AttributesDTOToStringFingerprint : Fingerprint(
     returnType = "Ljava/lang/String;",
-    accessFlags = listOf(AccessFlags.PUBLIC, AccessFlags.FINAL),
+    accessFlags = listOf(AccessFlags.PUBLIC), // Removed FINAL because it's not final in newer versions
     strings = listOf("AttributesDTO(isPremium=")
+)
+
+/**
+ * Fingerprint for the PremiumState toString method.
+ * We use this to locate the core PremiumState class and resolve its fields.
+ */
+internal object PremiumStateToStringFingerprint : Fingerprint(
+    returnType = "Ljava/lang/String;",
+    accessFlags = listOf(AccessFlags.PUBLIC, AccessFlags.FINAL),
+    strings = listOf("PremiumState(isPremium=")
 )
 
 /**
