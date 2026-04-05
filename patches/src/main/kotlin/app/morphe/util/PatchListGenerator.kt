@@ -1,4 +1,4 @@
-package app.bounce.util
+package app.morphe.util
 
 import com.google.gson.GsonBuilder
 import com.google.gson.annotations.SerializedName
