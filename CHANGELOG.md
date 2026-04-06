@@ -1,3 +1,10 @@
+# [1.2.0](https://github.com/hackingguy/morphe-patches/compare/v1.1.0...v1.2.0) (2026-04-06)
+
+
+### Features
+
+* add one more patch ([5386df8](https://github.com/hackingguy/morphe-patches/commit/5386df847dc86ed4c57aa36a05eb6a144a8c69c1))
+
 # [1.1.0](https://github.com/hackingguy/morphe-patches/compare/v1.0.5...v1.1.0) (2026-04-05)
 
 
