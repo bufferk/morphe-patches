@@ -64,3 +64,76 @@ internal object LoadGlobalMastheadAdFingerprint : Fingerprint(
     returnType = "V",
     strings = listOf("loadGlobalMastheadAd: ")
 )
+
+/**
+ * Fingerprint for MygateAdLoader.loadDynamicSpotlightAd().
+ */
+internal object LoadDynamicSpotlightAdFingerprint : Fingerprint(
+    definingClass = "Lcom/mygate/adsdk/MygateAdLoader;",
+    name = "loadDynamicSpotlightAd",
+    returnType = "V",
+    parameters = listOf("Landroid/widget/ImageView;")
+)
+
+/**
+ * Fingerprint for MygateAdLoader.getMyGateAdData (4 params).
+ */
+internal object GetMyGateAdData4Fingerprint : Fingerprint(
+    definingClass = "Lcom/mygate/adsdk/MygateAdLoader;",
+    name = "getMyGateAdData",
+    returnType = "V",
+    parameters = listOf(
+        "Ljava/lang/String;", 
+        "Ljava/lang/String;", 
+        "Lcom/mygate/adsdk/utils/MygateAdDataListener;", 
+        "Z"
+    )
+)
+
+/**
+ * Fingerprint for MygateAdLoader.getMyGateAdData (7 params).
+ */
+internal object GetMyGateAdData7Fingerprint : Fingerprint(
+    definingClass = "Lcom/mygate/adsdk/MygateAdLoader;",
+    name = "getMyGateAdData",
+    returnType = "V",
+    parameters = listOf(
+        "Ljava/lang/String;", 
+        "Ljava/lang/String;", 
+        "Ljava/lang/String;", 
+        "Ljava/lang/String;", 
+        "Lcom/mygate/adsdk/utils/MygateAdDataListener;", 
+        "Z", 
+        "Z"
+    )
+)
+
+/**
+ * Fingerprint for MygateAdLoader.getMyGateMultiAdData (6 params).
+ */
+internal object GetMyGateMultiAdDataFingerprint : Fingerprint(
+    definingClass = "Lcom/mygate/adsdk/MygateAdLoader;",
+    name = "getMyGateMultiAdData",
+    returnType = "V",
+    parameters = listOf(
+        "Ljava/lang/String;", 
+        "Ljava/lang/String;", 
+        "Ljava/lang/String;", 
+        "Lcom/mygate/adsdk/utils/MygateAdDataListener;", 
+        "Z", 
+        "Z"
+    )
+)
+
+/**
+ * Fingerprint for FloatingBannerAdHandler.loadAd().
+ */
+internal object LoadFloatingBannerAdFingerprint : Fingerprint(
+    definingClass = "Lcom/mygate/adsdk/ads/FloatingBannerAdHandler;",
+    name = "loadAd",
+    returnType = "V",
+    parameters = listOf(
+        "Ljava/lang/String;",
+        "Z"
+    )
+)

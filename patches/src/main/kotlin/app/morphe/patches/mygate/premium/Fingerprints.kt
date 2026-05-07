@@ -139,3 +139,13 @@ internal object GetFreqVisitingHelpFingerprint : Fingerprint(
     returnType = "Ljava/lang/Integer;",
     parameters = emptyList()
 )
+
+/**
+ * Fingerprint for PremiumFeatureCategory.getFreqGuest().
+ */
+internal object GetFreqGuestFingerprint : Fingerprint(
+    definingClass = "Lcom/mygate/user/modules/userprofile/entity/PremiumFeatureCategory;",
+    name = "getFreqGuest",
+    returnType = "Ljava/lang/Integer;",
+    parameters = emptyList()
+)
