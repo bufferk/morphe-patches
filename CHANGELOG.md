@@ -1,3 +1,11 @@
+# [1.3.0](https://github.com/hackingguy/morphe-patches/compare/v1.2.0...v1.3.0) (2026-05-07)
+
+
+### Features
+
+* fix mygate issue ([a1d7ab9](https://github.com/hackingguy/morphe-patches/commit/a1d7ab927f4826829296b4565b0690b7496743cf))
+* my gate patch ([3df6460](https://github.com/hackingguy/morphe-patches/commit/3df646006aaad405ff39878e43d7c9ec19e3970b))
+
 # [1.2.0](https://github.com/hackingguy/morphe-patches/compare/v1.1.0...v1.2.0) (2026-04-06)
 
 
