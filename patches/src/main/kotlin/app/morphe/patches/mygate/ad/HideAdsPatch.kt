@@ -62,5 +62,10 @@ val hideAdsPatch = bytecodePatch(
             0,
             "return-void"
         )
+        
+        LoadViewsFloatingBannerAdFingerprint.method.addInstructions(
+            0,
+            "return-void"
+        )
     }
 }
