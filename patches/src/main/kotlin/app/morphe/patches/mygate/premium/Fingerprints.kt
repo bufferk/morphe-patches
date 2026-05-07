@@ -65,7 +65,7 @@ internal object ShowUpgradeDialogFingerprint : Fingerprint(
     definingClass = "Lcom/mygate/user/utilities/KotlinUtils\$Companion;",
     name = "D",
     returnType = "V",
-    strings = listOf("layout_upgrade_premium")
+    parameters = listOf("Landroid/content/Context;")
 )
 
 /**
