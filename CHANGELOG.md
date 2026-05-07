@@ -1,3 +1,10 @@
+# [1.4.0](https://github.com/bufferk/morphe-patches/compare/v1.3.3...v1.4.0) (2026-05-07)
+
+
+### Features
+
+* bypass Flutter ad rendering via JSON spoofing & nuke native floating banners ([ac2c5d1](https://github.com/bufferk/morphe-patches/commit/ac2c5d19c9cd84006e4f92f4099751de9a602b83))
+
 ## [1.3.3](https://github.com/bufferk/morphe-patches/compare/v1.3.2...v1.3.3) (2026-05-07)
 
 
