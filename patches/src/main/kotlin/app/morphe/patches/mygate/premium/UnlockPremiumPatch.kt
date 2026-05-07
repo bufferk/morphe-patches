@@ -1,0 +1,108 @@
+/*
+ * Copyright 2026 Morphe.
+ * https://github.com/MorpheApp/morphe-patches
+ *
+ * See the included NOTICE file for GPLv3 §7(b) and §7(c) terms that apply to this code.
+ */
+package app.morphe.patches.mygate.premium
+
+import app.morphe.patcher.extensions.InstructionExtensions.addInstructions
+import app.morphe.patcher.patch.bytecodePatch
+import app.morphe.patches.mygate.shared.Constants.COMPATIBILITY_MYGATE
+
+private const val USER_PREMIUM_PLAN = "USER_PREMIUM_PLAN"
+
+@Suppress("unused")
+val unlockPremiumPatch = bytecodePatch(
+    name = "Unlock premium",
+    description = "Unlocks all MyGate premium features: spoofs USER_PREMIUM_PLAN status, " +
+            "suppresses upgrade dialogs and paywalls, enables frequent pre-approvals for " +
+            "deliveries, cabs and visiting help, unlocks surprise delivery and the " +
+            "always-approve-entries toggle.",
+    default = true
+) {
+    compatibleWith(COMPATIBILITY_MYGATE)
+
+    execute {
+
+        // ── 1. KotlinUtils.z() — isPremiumUser() ─────────────────────────────────────
+        // Single source of truth for premium status, consumed by:
+        //   • Every MygateAdLoader.setIsPremium() call (6 ad sites)
+        //   • ValidatedEntryAdapter "always approve entries" toggle
+        //   • HouseholdFragment "cvAlwaysApproveEntries" card
+        //   • AllowEntriesFragment premium branch
+        //   • HomeActivity premium badge & activity-feed URL params
+        // Always return true → entire app sees the user as premium.
+        IsPremiumUserFingerprint.method.addInstructions(
+            0,
+            """
+                const/4 v0, 0x1
+                return v0
+            """
+        )
+
+        // ── 2. UserProfile.getCombinedUserPlanStatus() ────────────────────────────────
+        // Called directly by UpgradePlanFragment, SubscriptionPurchaseActivity, and
+        // HomeActivity for plan-badge rendering and upgrade-CTA visibility.
+        // Always return "USER_PREMIUM_PLAN" so every string comparison passes.
+        GetCombinedUserPlanStatusFingerprint.method.addInstructions(
+            0,
+            """
+                const-string v0, "$USER_PREMIUM_PLAN"
+                return-object v0
+            """
+        )
+
+        // ── 3. KotlinUtils.D(Context) — showUpgradePremiumDialog() ───────────────────
+        // Shown whenever a non-premium user touches a locked feature (e.g. the
+        // "always approve entries" toggle in ValidatedEntryAdapter).
+        // return-void silences the popup for every call site app-wide.
+        ShowUpgradeDialogFingerprint.method.addInstructions(
+            0,
+            "return-void"
+        )
+
+        // ── 4. UpgradePlanFragment plan-status gate ───────────────────────────────────
+        // The fragment checks getUserPlan().getCode() at startup to decide whether to
+        // show the paywall CTA or the "already subscribed" UI.
+        // return-void prevents the paywall UI from ever being inflated.
+        UpgradePlanCheckFingerprint.method.addInstructions(
+            0,
+            "return-void"
+        )
+
+        // ── 5. UserProfile.getPremiumFeatureList() ───────────────────────────────────
+        // Used by DeliveryFragment, NotifyGateCabFragment, VisitingHelpApprovalFragment
+        // to check limits. If null, the UI falls back to the upgrade path in some cases
+        // (like surprise delivery).
+        // Ensure we always return a valid object so the getters below are called.
+        GetPremiumFeatureListFingerprint.method.addInstructions(
+            0,
+            """
+                iget-object v0, p0, Lcom/mygate/user/modules/userprofile/entity/UserProfile;->premiumFeatureCategory:Lcom/mygate/user/modules/userprofile/entity/PremiumFeatureCategory;
+                if-nez v0, :cond_0
+                new-instance v0, Lcom/mygate/user/modules/userprofile/entity/PremiumFeatureCategory;
+                invoke-direct {v0}, Lcom/mygate/user/modules/userprofile/entity/PremiumFeatureCategory;-><init>()V
+                iput-object v0, p0, Lcom/mygate/user/modules/userprofile/entity/UserProfile;->premiumFeatureCategory:Lcom/mygate/user/modules/userprofile/entity/PremiumFeatureCategory;
+                :cond_0
+                return-object v0
+            """
+        )
+
+        // ── 6. PremiumFeatureCategory feature getters ────────────────────────────────
+        // Force all frequent pre-approval settings to 1 (enabled).
+        // This ensures the actual fragment UI naturally updates to the "unlocked" state
+        // rather than us awkwardly skipping the UI update logic with return-void.
+        val returnOneInteger = ""${'"'}
+            const/4 v0, 0x1
+            invoke-static {v0}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
+            move-result-object v0
+            return-object v0
+        ""${'"'}.trimIndent()
+
+        GetFreqDeliveryFingerprint.method.addInstructions(0, returnOneInteger)
+        GetSurpriseDeliveryFingerprint.method.addInstructions(0, returnOneInteger)
+        GetFreqCabFingerprint.method.addInstructions(0, returnOneInteger)
+        GetFreqVisitingHelpFingerprint.method.addInstructions(0, returnOneInteger)
+    }
+}
