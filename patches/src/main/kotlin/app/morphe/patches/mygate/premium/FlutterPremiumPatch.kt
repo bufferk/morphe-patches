@@ -32,6 +32,12 @@ val flutterPremiumPatch = bytecodePatch(
             const-string v1, "status"
             const-string v2, "ACTIVE"
             invoke-virtual {v0, v1, v2}, Lorg/json/JSONObject;->put(Ljava/lang/String;Ljava/lang/Object;)Lorg/json/JSONObject;
+            const-string v1, "code"
+            const-string v2, "USER_PREMIUM_PLAN"
+            invoke-virtual {v0, v1, v2}, Lorg/json/JSONObject;->put(Ljava/lang/String;Ljava/lang/Object;)Lorg/json/JSONObject;
+            const-string v1, "name"
+            const-string v2, "Premium"
+            invoke-virtual {v0, v1, v2}, Lorg/json/JSONObject;->put(Ljava/lang/String;Ljava/lang/Object;)Lorg/json/JSONObject;
             
             const-string v1, "user_plan"
             invoke-virtual {p1, v1, v0}, Lorg/json/JSONObject;->put(Ljava/lang/String;Ljava/lang/Object;)Lorg/json/JSONObject;
@@ -40,6 +46,12 @@ val flutterPremiumPatch = bytecodePatch(
             invoke-direct {v0}, Lorg/json/JSONObject;-><init>()V
             const-string v1, "status"
             const-string v2, "ACTIVE"
+            invoke-virtual {v0, v1, v2}, Lorg/json/JSONObject;->put(Ljava/lang/String;Ljava/lang/Object;)Lorg/json/JSONObject;
+            const-string v1, "code"
+            const-string v2, "SOCIETY_PREMIUM_PLAN"
+            invoke-virtual {v0, v1, v2}, Lorg/json/JSONObject;->put(Ljava/lang/String;Ljava/lang/Object;)Lorg/json/JSONObject;
+            const-string v1, "name"
+            const-string v2, "Premium"
             invoke-virtual {v0, v1, v2}, Lorg/json/JSONObject;->put(Ljava/lang/String;Ljava/lang/Object;)Lorg/json/JSONObject;
             const-string v1, "sort_index"
             const/4 v2, 0x3
