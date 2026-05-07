@@ -1,7 +1,7 @@
 {
-  "created_at": "2026-05-07T17:41:00",
-  "description": "# [1.3.0](https://github.com/hackingguy/morphe-patches/compare/v1.2.0...v1.3.0) (2026-05-07)\n\n\n### Features\n\n* fix mygate issue ([a1d7ab9](https://github.com/hackingguy/morphe-patches/commit/a1d7ab927f4826829296b4565b0690b7496743cf))\n* my gate patch ([3df6460](https://github.com/hackingguy/morphe-patches/commit/3df646006aaad405ff39878e43d7c9ec19e3970b))",
-  "download_url": "https://github.com/hackingguy/morphe-patches/releases/download/v1.3.0/patches-1.3.0.mpp",
-  "signature_download_url": "https://github.com/hackingguy/morphe-patches/releases/download/v1.3.0/patches-1.3.0.mpp.asc",
-  "version": "1.3.0"
+  "created_at": "2026-05-07T17:46:54",
+  "description": "## [1.3.1](https://github.com/hackingguy/morphe-patches/compare/v1.3.0...v1.3.1) (2026-05-07)\n\n\n### Bug Fixes\n\n* mygate patch fixed ([65b9206](https://github.com/hackingguy/morphe-patches/commit/65b92062335a61e3dcb44ba548f89b5696c6135e))",
+  "download_url": "https://github.com/hackingguy/morphe-patches/releases/download/v1.3.1/patches-1.3.1.mpp",
+  "signature_download_url": "https://github.com/hackingguy/morphe-patches/releases/download/v1.3.1/patches-1.3.1.mpp.asc",
+  "version": "1.3.1"
 }
