@@ -137,3 +137,13 @@ internal object LoadFloatingBannerAdFingerprint : Fingerprint(
         "Z"
     )
 )
+
+/**
+ * Fingerprint for FloatingBannerAdHandler.loadViews().
+ */
+internal object LoadViewsFloatingBannerAdFingerprint : Fingerprint(
+    definingClass = "Lcom/mygate/adsdk/ads/FloatingBannerAdHandler;",
+    name = "loadViews",
+    returnType = "V",
+    parameters = emptyList()
+)
