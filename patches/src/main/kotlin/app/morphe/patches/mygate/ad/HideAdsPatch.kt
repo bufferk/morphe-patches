@@ -34,5 +34,33 @@ val hideAdsPatch = bytecodePatch(
             0,
             "return-void"
         )
+
+        // ── Dashboard / Community Ads ────────────────────────────────────────────────
+        // Short-circuit additional ad UI injection points and background ad fetches
+        // which populate the dashboard (e.g. MultiAdCarouselFragment, ApartmentFragment).
+        LoadDynamicSpotlightAdFingerprint.method.addInstructions(
+            0,
+            "return-void"
+        )
+        
+        GetMyGateAdData4Fingerprint.method.addInstructions(
+            0,
+            "return-void"
+        )
+        
+        GetMyGateAdData7Fingerprint.method.addInstructions(
+            0,
+            "return-void"
+        )
+        
+        GetMyGateMultiAdDataFingerprint.method.addInstructions(
+            0,
+            "return-void"
+        )
+        
+        LoadFloatingBannerAdFingerprint.method.addInstructions(
+            0,
+            "return-void"
+        )
     }
 }
