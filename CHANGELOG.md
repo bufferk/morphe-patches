@@ -1,3 +1,10 @@
+## [1.4.1](https://github.com/hackingguy/morphe-patches/compare/v1.4.0...v1.4.1) (2026-05-07)
+
+
+### Bug Fixes
+
+* inject plan code and name to properly trick flutter into premium status ([3914f55](https://github.com/hackingguy/morphe-patches/commit/3914f5501a3d2b2f6c5b7125d4e7e30763237bcc))
+
 # [1.4.0](https://github.com/hackingguy/morphe-patches/compare/v1.3.3...v1.4.0) (2026-05-07)
 
 
