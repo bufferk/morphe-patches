@@ -93,12 +93,12 @@ val unlockPremiumPatch = bytecodePatch(
         // Force all frequent pre-approval settings to 1 (enabled).
         // This ensures the actual fragment UI naturally updates to the "unlocked" state
         // rather than us awkwardly skipping the UI update logic with return-void.
-        val returnOneInteger = ""${'"'}
+        val returnOneInteger = """
             const/4 v0, 0x1
             invoke-static {v0}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
             move-result-object v0
             return-object v0
-        ""${'"'}.trimIndent()
+        """.trimIndent()
 
         GetFreqDeliveryFingerprint.method.addInstructions(0, returnOneInteger)
         GetSurpriseDeliveryFingerprint.method.addInstructions(0, returnOneInteger)
