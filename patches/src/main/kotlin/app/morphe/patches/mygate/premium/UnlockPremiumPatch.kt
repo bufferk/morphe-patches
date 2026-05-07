@@ -104,5 +104,6 @@ val unlockPremiumPatch = bytecodePatch(
         GetSurpriseDeliveryFingerprint.method.addInstructions(0, returnOneInteger)
         GetFreqCabFingerprint.method.addInstructions(0, returnOneInteger)
         GetFreqVisitingHelpFingerprint.method.addInstructions(0, returnOneInteger)
+        GetFreqGuestFingerprint.method.addInstructions(0, returnOneInteger)
     }
 }
