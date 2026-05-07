@@ -45,8 +45,7 @@ internal object GetCombinedUserPlanStatusFingerprint : Fingerprint(
     definingClass = "Lcom/mygate/user/modules/userprofile/entity/UserProfile;",
     name = "getCombinedUserPlanStatus",
     returnType = "Ljava/lang/String;",
-    parameters = emptyList(),
-    strings = listOf("USER_PREMIUM_PLAN")
+    parameters = emptyList()
 )
 
 // ── Upgrade dialog / paywall bypass ──────────────────────────────────────────────────────────────
