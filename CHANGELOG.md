@@ -1,3 +1,10 @@
+## [1.3.3](https://github.com/bufferk/morphe-patches/compare/v1.3.2...v1.3.3) (2026-05-07)
+
+
+### Bug Fixes
+
+* mygate patch ([7e2c582](https://github.com/bufferk/morphe-patches/commit/7e2c58224e2659870b68d13b56d8024299246562))
+
 ## [1.3.2](https://github.com/bufferk/morphe-patches/compare/v1.3.1...v1.3.2) (2026-05-07)
 
 
