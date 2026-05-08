@@ -1,7 +1,7 @@
 {
-  "created_at": "2026-05-07T18:39:03",
-  "description": "## [1.4.1](https://github.com/hackingguy/morphe-patches/compare/v1.4.0...v1.4.1) (2026-05-07)\n\n\n### Bug Fixes\n\n* inject plan code and name to properly trick flutter into premium status ([3914f55](https://github.com/hackingguy/morphe-patches/commit/3914f5501a3d2b2f6c5b7125d4e7e30763237bcc))",
-  "download_url": "https://github.com/hackingguy/morphe-patches/releases/download/v1.4.1/patches-1.4.1.mpp",
-  "signature_download_url": "https://github.com/hackingguy/morphe-patches/releases/download/v1.4.1/patches-1.4.1.mpp.asc",
-  "version": "1.4.1"
+  "created_at": "2026-05-08T04:30:33",
+  "description": "# [1.5.0](https://github.com/hackingguy/morphe-patches/compare/v1.4.1...v1.5.0) (2026-05-08)\n\n\n### Features\n\n* patch splitwise app ([1b905e8](https://github.com/hackingguy/morphe-patches/commit/1b905e8021a02f19f420dd388221df0daa4c9ba9))",
+  "download_url": "https://github.com/hackingguy/morphe-patches/releases/download/v1.5.0/patches-1.5.0.mpp",
+  "signature_download_url": "https://github.com/hackingguy/morphe-patches/releases/download/v1.5.0/patches-1.5.0.mpp.asc",
+  "version": "1.5.0"
 }
