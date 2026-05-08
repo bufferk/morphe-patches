@@ -1,3 +1,10 @@
+# [1.5.0](https://github.com/hackingguy/morphe-patches/compare/v1.4.1...v1.5.0) (2026-05-08)
+
+
+### Features
+
+* patch splitwise app ([1b905e8](https://github.com/hackingguy/morphe-patches/commit/1b905e8021a02f19f420dd388221df0daa4c9ba9))
+
 ## [1.4.1](https://github.com/hackingguy/morphe-patches/compare/v1.4.0...v1.4.1) (2026-05-07)
 
 
