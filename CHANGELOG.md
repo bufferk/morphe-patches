@@ -1,3 +1,10 @@
+## [1.5.1](https://github.com/hackingguy/morphe-patches/compare/v1.5.0...v1.5.1) (2026-05-09)
+
+
+### Bug Fixes
+
+* mygate notifications ([ae55452](https://github.com/hackingguy/morphe-patches/commit/ae55452a27083d3e78fe032446165a62f85cdfce))
+
 # [1.5.0](https://github.com/hackingguy/morphe-patches/compare/v1.4.1...v1.5.0) (2026-05-08)
 
 
