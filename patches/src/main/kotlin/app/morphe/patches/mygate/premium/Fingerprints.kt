@@ -174,3 +174,25 @@ internal object ReadPrefTokenNotFoundFingerprint : Fingerprint(
     parameters = emptyList(),
     strings = listOf("tokenNotFound")
 )
+
+/**
+ * Fingerprint for AppNotificationSettings.getEintercom().
+ * We patch this to always return 1 so the app thinks e-Intercom is globally enabled.
+ */
+internal object AppNotificationSettingsGetEintercomFingerprint : Fingerprint(
+    definingClass = "Lcom/mygate/user/modules/notifications/entity/AppNotificationSettings;",
+    name = "getEintercom",
+    returnType = "Ljava/lang/Integer;",
+    parameters = emptyList()
+)
+
+/**
+ * Fingerprint for NotificationSettings.getNotify().
+ * We patch this to always return "1" so the troubleshooting UI bypasses the "enable e-Intercom" error.
+ */
+internal object NotificationSettingsGetNotifyFingerprint : Fingerprint(
+    definingClass = "Lcom/mygate/user/modules/notifications/entity/NotificationSettings;",
+    name = "getNotify",
+    returnType = "Ljava/lang/String;",
+    parameters = emptyList()
+)
