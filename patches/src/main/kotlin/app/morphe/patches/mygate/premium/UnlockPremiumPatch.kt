@@ -135,5 +135,27 @@ val unlockPremiumPatch = bytecodePatch(
                 return v0
             """
         )
+
+        // ── 9. Fix "e-Intercom" Settings & Troubleshooting Error ─────────────────────
+        // We spoof both e-Intercom boolean getters so the app globally sees e-Intercom
+        // as enabled, preventing the "Please enable e-Intercom" error in the Test
+        // Notification UI and forcing the App Settings UI to consider it enabled.
+        AppNotificationSettingsGetEintercomFingerprint.method.addInstructions(
+            0,
+            """
+                const/4 v0, 0x1
+                invoke-static {v0}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
+                move-result-object v0
+                return-object v0
+            """
+        )
+        
+        NotificationSettingsGetNotifyFingerprint.method.addInstructions(
+            0,
+            """
+                const-string v0, "1"
+                return-object v0
+            """
+        )
     }
 }
