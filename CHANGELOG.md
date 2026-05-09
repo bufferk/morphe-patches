@@ -1,3 +1,10 @@
+## [1.5.2](https://github.com/hackingguy/morphe-patches/compare/v1.5.1...v1.5.2) (2026-05-09)
+
+
+### Bug Fixes
+
+* fix spoofed setting ([b1e3da0](https://github.com/hackingguy/morphe-patches/commit/b1e3da0736e9bf67fd48766202b6eaedb318ede0))
+
 ## [1.5.1](https://github.com/hackingguy/morphe-patches/compare/v1.5.0...v1.5.1) (2026-05-09)
 
 
