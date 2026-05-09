@@ -105,5 +105,35 @@ val unlockPremiumPatch = bytecodePatch(
         GetFreqCabFingerprint.method.addInstructions(0, returnOneInteger)
         GetFreqVisitingHelpFingerprint.method.addInstructions(0, returnOneInteger)
         GetFreqGuestFingerprint.method.addInstructions(0, returnOneInteger)
+
+        // ── 7. Fix Flash Notifications Routing ───────────────────────────────────────
+        // By forcing isPremiumUser to true globally, we accidentally routed flash
+        // notifications to SplashActivity instead of NotificationCampaignActivity.
+        // We override the Intent factory to explicitly return NotificationCampaignActivity.
+        CommonUtilityNotificationIntentFingerprint.method.addInstructions(
+            0,
+            """
+                new-instance v0, Landroid/content/Intent;
+                sget-object v1, Lcom/mygate/user/app/AppController;->G:Lcom/mygate/user/app/AppController;
+                const-class v2, Lcom/mygate/user/modules/notifications/ui/NotificationCampaignActivity;
+                invoke-direct {v0, v1, v2}, Landroid/content/Intent;-><init>(Landroid/content/Context;Ljava/lang/Class;)V
+                const-string v1, "approvalNotification"
+                invoke-virtual {v0, v1, p0}, Landroid/content/Intent;->putExtra(Ljava/lang/String;Landroid/os/Parcelable;)Landroid/content/Intent;
+                move-result-object v0
+                return-object v0
+            """
+        )
+
+        // ── 8. Fix "Test Notification" Troubleshooting Bug ───────────────────────────
+        // We force ReadPref.f() (which reads tokenNotFound) to return 0 so the user
+        // can successfully test notifications without being blocked by the "Google
+        // Play Services" error UI, which trips if token generation ever fails.
+        ReadPrefTokenNotFoundFingerprint.method.addInstructions(
+            0,
+            """
+                const/4 v0, 0x0
+                return v0
+            """
+        )
     }
 }

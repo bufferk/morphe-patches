@@ -149,3 +149,28 @@ internal object GetFreqGuestFingerprint : Fingerprint(
     returnType = "Ljava/lang/Integer;",
     parameters = emptyList()
 )
+
+// ── Notification fixes ───────────────────────────────────────────────────────────────────────────
+
+/**
+ * Fingerprint for CommonUtility.j0() (or similar) which creates the intent for flash notifications.
+ * Patched to ignore premium status and always launch NotificationCampaignActivity so flash
+ * notifications show up correctly on the lockscreen instead of just opening SplashActivity silently.
+ */
+internal object CommonUtilityNotificationIntentFingerprint : Fingerprint(
+    definingClass = "Lcom/mygate/user/utilities/CommonUtility;",
+    returnType = "Landroid/content/Intent;",
+    parameters = listOf("Lcom/mygate/user/modules/notifications/entity/ApprovalNotification;"),
+    strings = listOf("approvalNotification")
+)
+
+/**
+ * Fingerprint for ReadPref.f() which reads "tokenNotFound".
+ * Patched to always return 0 so the Troubleshooting UI doesn't erroneously block testing.
+ */
+internal object ReadPrefTokenNotFoundFingerprint : Fingerprint(
+    definingClass = "Lcom/mygate/user/common/preferences/ReadPref;",
+    returnType = "I",
+    parameters = emptyList(),
+    strings = listOf("tokenNotFound")
+)
