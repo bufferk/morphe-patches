@@ -157,5 +157,30 @@ val unlockPremiumPatch = bytecodePatch(
                 return-object v0
             """
         )
+        
+        // ── 10. Fix Test Notification `e-Intercom` Null Pointer Check ───────────────
+        // Even though we spoofed the e-Intercom boolean getters above, the MyGate API
+        // may still fail to return a NotificationSettings payload due to our premium 
+        // spoofing causing a backend signature/identity mismatch. When the payload is
+        // null, the Troubleshooting UI's e-Intercom check (`zEquals = "1".equals(null)`)
+        // evaluates to false and fails the entire testing flow. We patch the ViewModel's
+        // success and failure methods to completely ignore the real API response and
+        // ALWAYS emit a valid, non-null NotificationSettings object. This ensures `X` 
+        // in the fragment is never null, allowing our boolean getters to do their job.
+        val emitFakeNotificationSettings = """
+            new-instance v0, Lcom/mygate/user/modules/notifications/entity/NotificationSettings;
+            invoke-direct {v0}, Lcom/mygate/user/modules/notifications/entity/NotificationSettings;-><init>()V
+            iget-object v1, p0, Lcom/mygate/user/modules/testnotification/ui/viewmodel/TestNotificationTroubleshootingViewModel;->c:Landroidx/lifecycle/MutableLiveData;
+            invoke-virtual {v1, v0}, Landroidx/lifecycle/LiveData;->j(Ljava/lang/Object;)V
+            return-void
+        """.trimIndent()
+
+        TroubleshootingSettingsSuccessFingerprint.method.replaceMethod {
+            append(emitFakeNotificationSettings)
+        }
+        
+        TroubleshootingSettingsFailureFingerprint.method.replaceMethod {
+            append(emitFakeNotificationSettings)
+        }
     }
 }
