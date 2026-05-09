@@ -196,3 +196,25 @@ internal object NotificationSettingsGetNotifyFingerprint : Fingerprint(
     returnType = "Ljava/lang/String;",
     parameters = emptyList()
 )
+
+/**
+ * Fingerprint for TestNotificationTroubleshootingViewModel.onNotificationSettingsManagerSuccess()
+ * We override this to ignore the API response and always emit a valid NotificationSettings
+ * object so the troubleshooting UI doesn't crash on e-Intercom check.
+ */
+internal object TroubleshootingSettingsSuccessFingerprint : Fingerprint(
+    definingClass = "Lcom/mygate/user/modules/testnotification/ui/viewmodel/TestNotificationTroubleshootingViewModel;",
+    name = "onNotificationSettingsManagerSuccess",
+    returnType = "V",
+    parameters = listOf("Lcom/mygate/user/modules/notifications/events/manager/INotificationSettingsManagerSuccessEvent;")
+)
+
+/**
+ * Fingerprint for TestNotificationTroubleshootingViewModel.onNotificationSettingsManagerFailure()
+ */
+internal object TroubleshootingSettingsFailureFingerprint : Fingerprint(
+    definingClass = "Lcom/mygate/user/modules/testnotification/ui/viewmodel/TestNotificationTroubleshootingViewModel;",
+    name = "onNotificationSettingsManagerFailure",
+    returnType = "V",
+    parameters = listOf("Lcom/mygate/user/modules/notifications/events/manager/INotificationSettingsManagerFailureEvent;")
+)
