@@ -1,3 +1,9 @@
+## [1.6.11-dev.1](https://github.com/bufferk/morphe-patches/compare/v1.6.10...v1.6.11-dev.1) (2026-07-05)
+
+### 🐛 Bug Fixes
+
+* **mygate:** resolve notification loss and fingerprint mismatches on 7.30.1 ([0233b61](https://github.com/bufferk/morphe-patches/commit/0233b616e395622c8c2edb071c4f61e01ce69766))
+
 ## [1.6.11](https://github.com/bufferk/morphe-patches/compare/v1.6.10...v1.6.11) (2026-07-05)
 
 ### 🐛 Bug Fixes
