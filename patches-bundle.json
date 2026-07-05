@@ -1,7 +1,7 @@
 {
-  "created_at": "2026-07-05T17:12:24",
-  "description": "## [1.6.12](https://github.com/hackingguy/morphe-patches/compare/v1.6.11...v1.6.12) (2026-07-05)\n\n### 🐛 Bug Fixes\n\n* **mygate:** make ShowUpgradeDialogFingerprint dynamic to bypass method z obfuscation ([9fca981](https://github.com/hackingguy/morphe-patches/commit/9fca981a6f7bab44aac16524806474d5d9f62381))",
-  "download_url": "https://github.com/hackingguy/morphe-patches/releases/download/v1.6.12/patches-1.6.12.mpp",
+  "created_at": "2026-07-05T17:22:08",
+  "description": "## [1.6.13-dev.1](https://github.com/hackingguy/morphe-patches/compare/v1.6.12...v1.6.13-dev.1) (2026-07-05)\n\n### 🐛 Bug Fixes\n\n* **mygate:** make ShowUpgradeDialogFingerprint matching string-based to prevent obfuscated ViewBinding mismatch ([17eeddd](https://github.com/hackingguy/morphe-patches/commit/17eeddd9708754d585976c56dc3ec02e64128f17))",
+  "download_url": "https://github.com/hackingguy/morphe-patches/releases/download/v1.6.13-dev.1/patches-1.6.13-dev.1.mpp",
   "signature_download_url": "",
-  "version": "1.6.12"
+  "version": "1.6.13-dev.1"
 }

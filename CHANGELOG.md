@@ -1,3 +1,9 @@
+## [1.6.13-dev.1](https://github.com/hackingguy/morphe-patches/compare/v1.6.12...v1.6.13-dev.1) (2026-07-05)
+
+### 🐛 Bug Fixes
+
+* **mygate:** make ShowUpgradeDialogFingerprint matching string-based to prevent obfuscated ViewBinding mismatch ([17eeddd](https://github.com/hackingguy/morphe-patches/commit/17eeddd9708754d585976c56dc3ec02e64128f17))
+
 ## [1.6.12](https://github.com/hackingguy/morphe-patches/compare/v1.6.11...v1.6.12) (2026-07-05)
 
 ### 🐛 Bug Fixes

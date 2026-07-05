@@ -76,7 +76,7 @@ This repository provides custom, community-developed bytecode patches for variou
 ## 🩹 Patches
 
 <!-- PATCHES_START EXPANDED -->
-> **[v1.6.12](https://github.com/hackingguy/morphe-patches/releases/tag/v1.6.12)**&nbsp;&nbsp;•&nbsp;&nbsp;`main`&nbsp;&nbsp;•&nbsp;&nbsp;14 patches total
+> **[v1.6.13-dev.1](https://github.com/hackingguy/morphe-patches/releases/tag/v1.6.13-dev.1)**&nbsp;&nbsp;•&nbsp;&nbsp;`dev`&nbsp;&nbsp;•&nbsp;&nbsp;14 patches total
 <details open>
 <summary>📦 Bounce Companion&nbsp;&nbsp;•&nbsp;&nbsp;1 patch</summary>
 <br>
