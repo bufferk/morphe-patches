@@ -1,5 +1,5 @@
 extension {
-    name = "extensions/extension.rve"
+    name = "extensions/extension.mpe"
 }
 
 android {
