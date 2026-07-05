@@ -1,7 +1,7 @@
 {
-  "created_at": "2026-07-05T09:59:08",
-  "description": "## [1.6.4](https://github.com/hackingguy/morphe-patches/compare/v1.6.3...v1.6.4) (2026-07-05)\n\n\n### Bug Fixes\n\n* **medium:** change extension file type to .mpe for Morphe compatibility ([a3400c4](https://github.com/hackingguy/morphe-patches/commit/a3400c4491dca66cd907e160d57172cbb3bb5fc0))",
-  "download_url": "https://github.com/hackingguy/morphe-patches/releases/download/v1.6.4/patches-1.6.4.mpp",
-  "signature_download_url": "https://github.com/hackingguy/morphe-patches/releases/download/v1.6.4/patches-1.6.4.mpp.asc",
-  "version": "1.6.4"
+  "created_at": "2026-07-05T10:17:12",
+  "description": "## [1.6.5](https://github.com/hackingguy/morphe-patches/compare/v1.6.4...v1.6.5) (2026-07-05)\n\n\n### Bug Fixes\n\n* **medium:** refine Settings row integrations, click ripples, and floating button color/alignment ([a724c4f](https://github.com/hackingguy/morphe-patches/commit/a724c4ffe33d033534e52de8d83e2ce13b619191))",
+  "download_url": "https://github.com/hackingguy/morphe-patches/releases/download/v1.6.5/patches-1.6.5.mpp",
+  "signature_download_url": "https://github.com/hackingguy/morphe-patches/releases/download/v1.6.5/patches-1.6.5.mpp.asc",
+  "version": "1.6.5"
 }
