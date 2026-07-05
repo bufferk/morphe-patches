@@ -11,6 +11,7 @@ val freediumPatch = bytecodePatch(
     name = "Freedium",
     description = "Adds a profile setting to choose the Freedium Mirror host, and a floating button on articles that opens the current article using the chosen Freedium Mirror in a webview.",
     default = true
+) {
     compatibleWith(COMPATIBILITY_MEDIUM)
     extendWith("extensions/extension.rve")
 
