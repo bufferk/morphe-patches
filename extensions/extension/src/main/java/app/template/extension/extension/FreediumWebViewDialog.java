@@ -2,6 +2,7 @@ package app.template.extension.extension;
 
 import android.app.Dialog;
 import android.content.Context;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,17 +25,38 @@ public class FreediumWebViewDialog extends Dialog {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         
+        boolean isDarkMode = (getContext().getResources().getConfiguration().uiMode & android.content.res.Configuration.UI_MODE_NIGHT_MASK) 
+                == android.content.res.Configuration.UI_MODE_NIGHT_YES;
+
         Window window = getWindow();
         if (window != null) {
             window.setWindowAnimations(android.R.style.Animation_InputMethod);
             window.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
+            
+            // Set status bar colors and icon visibility dynamically
+            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
+                window.addFlags(android.view.WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+                window.setStatusBarColor(isDarkMode ? Color.BLACK : Color.WHITE);
+                
+                if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
+                    int flags = window.getDecorView().getSystemUiVisibility();
+                    if (isDarkMode) {
+                        flags &= ~View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR; // Light status bar text
+                    } else {
+                        flags |= View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR; // Dark status bar text
+                    }
+                    window.getDecorView().setSystemUiVisibility(flags);
+                }
+            }
         }
 
+        // Use fitsSystemWindows to prevent drawing content underneath the status bar
         FrameLayout rootLayout = new FrameLayout(getContext());
         rootLayout.setLayoutParams(new ViewGroup.LayoutParams(
                 ViewGroup.LayoutParams.MATCH_PARENT,
                 ViewGroup.LayoutParams.MATCH_PARENT
         ));
+        rootLayout.setFitsSystemWindows(true);
 
         // Main WebView
         WebView webView = new WebView(getContext());
@@ -52,10 +74,6 @@ public class FreediumWebViewDialog extends Dialog {
         loaderWebView.setVerticalScrollBarEnabled(false);
         loaderWebView.setHorizontalScrollBarEnabled(false);
 
-        // Load premium HTML/CSS loader animation
-        boolean isDarkMode = (getContext().getResources().getConfiguration().uiMode & android.content.res.Configuration.UI_MODE_NIGHT_MASK) 
-                == android.content.res.Configuration.UI_MODE_NIGHT_YES;
-                
         String bgColor = isDarkMode ? "#000000" : "#FFFFFF";
         String textColor = isDarkMode ? "#F8FAFC" : "#0F172A";
         String spinnerColor = "#02B875";
@@ -124,7 +142,6 @@ public class FreediumWebViewDialog extends Dialog {
             @Override
             public void onPageFinished(WebView view, String url) {
                 super.onPageFinished(view, url);
-                // Hide the loader WebView once page finishes loading
                 loaderWebView.setVisibility(View.GONE);
             }
         });
