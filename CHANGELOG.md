@@ -1,3 +1,10 @@
+## [1.6.6](https://github.com/hackingguy/morphe-patches/compare/v1.6.5...v1.6.6) (2026-07-05)
+
+
+### Bug Fixes
+
+* **medium:** set pill-shaped Unlock button with overlay and HTML loading animation inside webview ([6f2ac37](https://github.com/hackingguy/morphe-patches/commit/6f2ac374c5907c357877197b61544ba0683bec04))
+
 ## [1.6.5](https://github.com/hackingguy/morphe-patches/compare/v1.6.4...v1.6.5) (2026-07-05)
 
 
