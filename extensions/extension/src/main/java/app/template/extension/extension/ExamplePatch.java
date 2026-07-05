@@ -38,7 +38,7 @@ public class ExamplePatch {
                 FrameLayout.LayoutParams.WRAP_CONTENT
         );
         buttonLp.gravity = Gravity.BOTTOM | Gravity.END;
-        buttonLp.setMargins(0, 0, dpToPx(context, 16), dpToPx(context, 16));
+        buttonLp.setMargins(0, 0, dpToPx(context, 16), dpToPx(context, 76));
         button.setLayoutParams(buttonLp);
 
         // Rounded rectangle background (pill shape)
