@@ -1,3 +1,10 @@
+## [1.6.9](https://github.com/bufferk/morphe-patches/compare/v1.6.8...v1.6.9) (2026-07-05)
+
+
+### Bug Fixes
+
+* **medium:** add onLongClickListener to hide the Unlock button ([721fc87](https://github.com/bufferk/morphe-patches/commit/721fc871b369c4af04733b18545286bccf6824bb))
+
 ## [1.6.8](https://github.com/bufferk/morphe-patches/compare/v1.6.7...v1.6.8) (2026-07-05)
 
 
