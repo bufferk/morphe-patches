@@ -1,3 +1,11 @@
+## [1.6.2](https://github.com/bufferk/morphe-patches/compare/v1.6.1...v1.6.2) (2026-07-05)
+
+
+### Bug Fixes
+
+* **medium:** correct syntax error in FreediumPatch.kt ([b85de4d](https://github.com/bufferk/morphe-patches/commit/b85de4ddfc46576495b607df04c9d3ccf0baba56))
+* **medium:** declare extension dependency in patch builder DSL ([b9ddfb2](https://github.com/bufferk/morphe-patches/commit/b9ddfb20539840e51fb2e129cc01bd8f7069b225))
+
 ## [1.6.1](https://github.com/bufferk/morphe-patches/compare/v1.6.0...v1.6.1) (2026-07-05)
 
 
