@@ -73,25 +73,10 @@ This repository provides custom, community-developed bytecode patches for variou
 
 ---
 
-## 🩹 Patches List
+## 🩹 Patches
 
-📦 **Total Patches:** 13
-
-| 💊 Patch Name | 📦 Target Application | 📜 Description |
-|:---|:---|:---|
-| **Freedium** | `com.medium.reader` | Adds settings server picker and floating unlock button to view premium articles. |
-| **Unlock Pro** | `com.splitwise.SplitwiseMobile` | Unlocks Splitwise Pro features and hides ad formats. |
-| **Enable Premium Features** | `com.truecaller` | Unlocks premium capabilities in the application. |
-| **Mock Premium** | `com.truecaller` | Mocks Truecaller premium status. |
-| **Remove Premium UI** | `com.truecaller` | Hides premium marketing banners and menus. |
-| **Hide Get Premium Banners** | `com.truecaller` | Removes premium prompts from caller profiles. |
-| **Hide Premium Upgrade Prompts** | `com.truecaller` | Disables checkout popups. |
-| **Disable Analytics** | `com.truecaller` | Disables tracking and analytics. |
-| **Unlock Premium** | `com.mygate.user` | Grants full premium access in MyGate. |
-| **Hide Ads** | `com.mygate.user` | Disables banner and floating promotions. |
-| **Flutter Premium** | `com.mygate.user` | Mocks premium status inside the Flutter layers. |
-| **Bypass License Check** | *Generic* | Neutralizes standard license verifiers. |
-| **Unlock Premium** | `at.fourtwenty.at4k` | Unlocks premium status inside AT4K. |
+<!-- PATCHES_START EXPANDED -->
+<!-- PATCHES_END -->
 
 ---
 
