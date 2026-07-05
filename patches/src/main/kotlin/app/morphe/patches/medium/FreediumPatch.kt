@@ -16,6 +16,26 @@ val freediumPatch = bytecodePatch(
     extendWith("extensions/extension.rve")
 
     execute {
+        // Manually load and merge extension.rve to work around classloader bugs
+        try {
+            val getPatchClassesMethod = this.javaClass.methods.first { it.name.startsWith("getPatchClasses") }
+            val patchClasses = getPatchClassesMethod.invoke(this)
+            val addClassMethod = patchClasses.javaClass.methods.first { it.name.startsWith("addClass") }
+            val stream = COMPATIBILITY_MEDIUM.javaClass.classLoader.getResourceAsStream("extensions/extension.rve")
+                ?: throw Exception("Could not find extensions/extension.rve in patches package")
+            val rawDexIoClass = Class.forName("lanchon.multidexlib2.RawDexIO")
+            val readRawDexFileMethod = rawDexIoClass.getMethod("readRawDexFile", java.io.InputStream::class.java, java.lang.Long.TYPE, Class.forName("com.android.tools.smali.dexlib2.Opcodes"))
+            val dexBackedDexFile = readRawDexFileMethod.invoke(null, stream, 0L, null)
+            val getClassesMethod = dexBackedDexFile.javaClass.getMethod("getClasses")
+            val classes = getClassesMethod.invoke(dexBackedDexFile) as Set<*>
+            for (classDef in classes) {
+                addClassMethod.invoke(patchClasses, classDef)
+            }
+        } catch (e: Exception) {
+            throw Exception("Failed to manually merge extension: " + e.message, e)
+        }
+
+
         // ── 1. SettingsFragment.F() ──────────────────────────────────────────────────
         // Intercept settings composition: wrap the returned ComposeView in a
         // LinearLayout containing a custom settings row to select the Freedium host name,
