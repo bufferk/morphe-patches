@@ -38,11 +38,8 @@ val freediumPatch = bytecodePatch(
         // that launches a WebView Dialog displaying the current article fetched from the selected
         // Freedium Mirror.
         PostFragmentQFingerprint.method.apply {
-            val instructions = implementation!!.instructions.toList()
-            val returnInstruction = instructions.last { it.opcode == Opcode.RETURN_VOID }
-            val index = instructions.indexOf(returnInstruction)
             addInstructions(
-                index,
+                0,
                 """
                     invoke-static {p0, p1}, Lapp/template/extension/extension/ExamplePatch;->onPostFragmentViewCreated(Ljava/lang/Object;Landroid/view/View;)V
                 """.trimIndent()
