@@ -170,31 +170,50 @@ public class ExamplePatch {
         settingsRow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                final String[] hosts = new String[]{
-                        "freedium-mirror.cfd",
-                        "freedium.cfd",
-                        "freedium.net"
-                };
-                
-                android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(context);
-                builder.setTitle("Select Freedium Host");
+                final java.util.ArrayList<String> optionsList = new java.util.ArrayList<String>();
+                optionsList.add("freedium-mirror.cfd");
+                optionsList.add("freedium.cfd");
+                optionsList.add("freedium.net");
                 
                 String current = prefs.getString("freedium_host", "freedium-mirror.cfd");
+                boolean isPreconfigured = false;
+                for (String h : optionsList) {
+                    if (h.equals(current)) {
+                        isPreconfigured = true;
+                        break;
+                    }
+                }
+                
+                if (!isPreconfigured) {
+                    optionsList.add(current);
+                }
+                
+                optionsList.add("Add custom host...");
+                
+                final String[] items = optionsList.toArray(new String[0]);
                 int selectedIdx = -1;
-                for (int i = 0; i < hosts.length; i++) {
-                    if (hosts[i].equals(current)) {
+                for (int i = 0; i < items.length - 1; i++) {
+                    if (items[i].equals(current)) {
                         selectedIdx = i;
                         break;
                     }
                 }
                 
-                builder.setSingleChoiceItems(hosts, selectedIdx, new android.content.DialogInterface.OnClickListener() {
+                android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(context);
+                builder.setTitle("Select Freedium Host");
+                
+                builder.setSingleChoiceItems(items, selectedIdx, new android.content.DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(android.content.DialogInterface dialog, int which) {
-                        String chosenHost = hosts[which];
-                        prefs.edit().putString("freedium_host", chosenHost).apply();
-                        subtitle.setText("Current: " + chosenHost);
-                        dialog.dismiss();
+                        if (which == items.length - 1) {
+                            dialog.dismiss();
+                            showCustomHostInputDialog(context, prefs, subtitle);
+                        } else {
+                            String chosenHost = items[which];
+                            prefs.edit().putString("freedium_host", chosenHost).apply();
+                            subtitle.setText("Current: " + chosenHost);
+                            dialog.dismiss();
+                        }
                     }
                 });
                 
@@ -224,5 +243,48 @@ public class ExamplePatch {
         rootLayout.addView(composeView, composeLp);
 
         return rootLayout;
+    }
+
+    private static void showCustomHostInputDialog(final Context context, final SharedPreferences prefs, final TextView subtitle) {
+        android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(context);
+        builder.setTitle("Enter Custom Host");
+
+        final android.widget.EditText input = new android.widget.EditText(context);
+        input.setHint("e.g. custom-mirror.xyz");
+        
+        FrameLayout container = new FrameLayout(context);
+        FrameLayout.LayoutParams params = new FrameLayout.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.WRAP_CONTENT
+        );
+        params.leftMargin = dpToPx(context, 20);
+        params.rightMargin = dpToPx(context, 20);
+        params.topMargin = dpToPx(context, 10);
+        params.bottomMargin = dpToPx(context, 10);
+        input.setLayoutParams(params);
+        container.addView(input);
+        builder.setView(container);
+
+        builder.setPositiveButton("Save", new android.content.DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(android.content.DialogInterface dialog, int which) {
+                String val = input.getText().toString().trim();
+                if (val.startsWith("https://")) {
+                    val = val.substring(8);
+                } else if (val.startsWith("http://")) {
+                    val = val.substring(7);
+                }
+                if (val.endsWith("/")) {
+                    val = val.substring(0, val.length() - 1);
+                }
+                
+                if (!val.isEmpty()) {
+                    prefs.edit().putString("freedium_host", val).apply();
+                    subtitle.setText("Current: " + val);
+                }
+            }
+        });
+        builder.setNegativeButton("Cancel", null);
+        builder.show();
     }
 }
