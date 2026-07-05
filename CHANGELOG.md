@@ -3,6 +3,13 @@
 ### 🐛 Bug Fixes
 
 * **mygate:** resolve notification loss and fingerprint mismatches on 7.30.1 ([030d5ec](https://github.com/hackingguy/morphe-patches/commit/030d5ecc0a48bf8965bde5e86991420d52ff736c))
+* **workflow:** move clean task to start of build to prevent deleting release assets ([54bda4d](https://github.com/hackingguy/morphe-patches/commit/54bda4d8d893af5d17abc545d73d8496e4222576))
+
+## [1.6.11](https://github.com/hackingguy/morphe-patches/compare/v1.6.10...v1.6.11) (2026-07-05)
+
+### 🐛 Bug Fixes
+
+* **mygate:** resolve notification loss and fingerprint mismatches on 7.30.1 ([030d5ec](https://github.com/hackingguy/morphe-patches/commit/030d5ecc0a48bf8965bde5e86991420d52ff736c))
 
 ## [1.6.10](https://github.com/hackingguy/morphe-patches/compare/v1.6.9...v1.6.10) (2026-07-05)
 
