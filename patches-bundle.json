@@ -1,7 +1,7 @@
 {
-  "created_at": "2026-07-05T16:48:38",
-  "description": "## [1.6.11](https://github.com/hackingguy/morphe-patches/compare/v1.6.10...v1.6.11) (2026-07-05)\n\n### 🐛 Bug Fixes\n\n* **mygate:** resolve notification loss and fingerprint mismatches on 7.30.1 ([030d5ec](https://github.com/hackingguy/morphe-patches/commit/030d5ecc0a48bf8965bde5e86991420d52ff736c))\n* **workflow:** move clean task to start of build to prevent deleting release assets ([54bda4d](https://github.com/hackingguy/morphe-patches/commit/54bda4d8d893af5d17abc545d73d8496e4222576))",
-  "download_url": "https://github.com/hackingguy/morphe-patches/releases/download/v1.6.11/patches-1.6.11.mpp",
+  "created_at": "2026-07-05T17:12:24",
+  "description": "## [1.6.12](https://github.com/hackingguy/morphe-patches/compare/v1.6.11...v1.6.12) (2026-07-05)\n\n### 🐛 Bug Fixes\n\n* **mygate:** make ShowUpgradeDialogFingerprint dynamic to bypass method z obfuscation ([9fca981](https://github.com/hackingguy/morphe-patches/commit/9fca981a6f7bab44aac16524806474d5d9f62381))",
+  "download_url": "https://github.com/hackingguy/morphe-patches/releases/download/v1.6.12/patches-1.6.12.mpp",
   "signature_download_url": "",
-  "version": "1.6.11"
+  "version": "1.6.12"
 }
