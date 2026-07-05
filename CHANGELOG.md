@@ -1,3 +1,10 @@
+## [1.6.7](https://github.com/hackingguy/morphe-patches/compare/v1.6.6...v1.6.7) (2026-07-05)
+
+
+### Bug Fixes
+
+* **medium:** add custom host option inside freedium settings dialog ([d5a553c](https://github.com/hackingguy/morphe-patches/commit/d5a553c822370ce20c3f6263cdc0862a372f0955))
+
 ## [1.6.6](https://github.com/hackingguy/morphe-patches/compare/v1.6.5...v1.6.6) (2026-07-05)
 
 
