@@ -28,7 +28,6 @@ import app.morphe.patcher.string
  */
 internal object IsPremiumUserFingerprint : Fingerprint(
     definingClass = "Lcom/mygate/user/utilities/KotlinUtils\$Companion;",
-    name = "z",
     returnType = "Z",
     parameters = emptyList(),
     strings = listOf("USER_PREMIUM_PLAN", "SOCIETY_PREMIUM_PLAN")
@@ -63,9 +62,9 @@ internal object GetCombinedUserPlanStatusFingerprint : Fingerprint(
  */
 internal object ShowUpgradeDialogFingerprint : Fingerprint(
     definingClass = "Lcom/mygate/user/utilities/KotlinUtils\$Companion;",
-    name = "D",
+    name = "z",
     returnType = "V",
-    parameters = listOf("Landroid/content/Context;")
+    parameters = listOf("Landroidx/fragment/app/FragmentActivity;")
 )
 
 /**

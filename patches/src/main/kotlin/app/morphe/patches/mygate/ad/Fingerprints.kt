@@ -23,7 +23,6 @@ import app.morphe.patcher.string
  */
 internal object IsPremiumUserFingerprint : Fingerprint(
     definingClass = "Lcom/mygate/user/utilities/KotlinUtils\$Companion;",
-    name = "z",
     returnType = "Z",
     parameters = emptyList(),
     strings = listOf("USER_PREMIUM_PLAN", "SOCIETY_PREMIUM_PLAN")
