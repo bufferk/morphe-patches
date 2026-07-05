@@ -1,3 +1,10 @@
+## [1.6.5](https://github.com/hackingguy/morphe-patches/compare/v1.6.4...v1.6.5) (2026-07-05)
+
+
+### Bug Fixes
+
+* **medium:** refine Settings row integrations, click ripples, and floating button color/alignment ([a724c4f](https://github.com/hackingguy/morphe-patches/commit/a724c4ffe33d033534e52de8d83e2ce13b619191))
+
 ## [1.6.4](https://github.com/hackingguy/morphe-patches/compare/v1.6.3...v1.6.4) (2026-07-05)
 
 
