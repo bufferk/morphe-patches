@@ -5,18 +5,21 @@ updates:
     directory: /
     target-branch: dev
     schedule:
-      interval: monthly
+      interval: weekly
 
   - package-ecosystem: npm
     labels: []
     directory: /
     target-branch: dev
     schedule:
-      interval: monthly
+      interval: weekly
+    ignore:
+      # version 10.x and later may not generate release notes correctly
+      - dependency-name: "conventional-changelog-conventionalcommits"
 
   - package-ecosystem: gradle
     labels: []
     directory: /
     target-branch: dev
     schedule:
-      interval: monthly
+      interval: weekly
