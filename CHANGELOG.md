@@ -1,3 +1,10 @@
+## [1.6.3](https://github.com/bufferk/morphe-patches/compare/v1.6.2...v1.6.3) (2026-07-05)
+
+
+### Bug Fixes
+
+* **medium:** implement manual reflection-based extension loader to resolve classloader issues ([f3f536b](https://github.com/bufferk/morphe-patches/commit/f3f536bf78c015f2896ffac350573f6ce32a0959))
+
 ## [1.6.2](https://github.com/bufferk/morphe-patches/compare/v1.6.1...v1.6.2) (2026-07-05)
 
 
