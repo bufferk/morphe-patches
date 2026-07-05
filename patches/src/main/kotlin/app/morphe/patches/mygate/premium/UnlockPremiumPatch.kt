@@ -7,6 +7,7 @@
 package app.morphe.patches.mygate.premium
 
 import app.morphe.patcher.extensions.InstructionExtensions.addInstructions
+import app.morphe.patcher.extensions.InstructionExtensions.removeInstructions
 import app.morphe.patcher.patch.bytecodePatch
 import app.morphe.patches.mygate.shared.Constants.COMPATIBILITY_MYGATE
 
@@ -175,12 +176,14 @@ val unlockPremiumPatch = bytecodePatch(
             return-void
         """.trimIndent()
 
-        TroubleshootingSettingsSuccessFingerprint.method.replaceMethod {
-            append(emitFakeNotificationSettings)
+        TroubleshootingSettingsSuccessFingerprint.method.apply {
+            removeInstructions(0)
+            addInstructions(0, emitFakeNotificationSettings)
         }
         
-        TroubleshootingSettingsFailureFingerprint.method.replaceMethod {
-            append(emitFakeNotificationSettings)
+        TroubleshootingSettingsFailureFingerprint.method.apply {
+            removeInstructions(0)
+            addInstructions(0, emitFakeNotificationSettings)
         }
     }
 }
