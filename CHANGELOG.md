@@ -1,3 +1,9 @@
+## [1.6.12](https://github.com/bufferk/morphe-patches/compare/v1.6.11...v1.6.12) (2026-07-05)
+
+### 🐛 Bug Fixes
+
+* **mygate:** make ShowUpgradeDialogFingerprint dynamic to bypass method z obfuscation ([1cfb5b9](https://github.com/bufferk/morphe-patches/commit/1cfb5b9b53e430e3812da1bd951f5d4ad091c796))
+
 ## [1.6.11](https://github.com/bufferk/morphe-patches/compare/v1.6.10...v1.6.11) (2026-07-05)
 
 ### 🐛 Bug Fixes
