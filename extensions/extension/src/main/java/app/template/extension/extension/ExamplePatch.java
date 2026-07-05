@@ -100,6 +100,14 @@ public class ExamplePatch {
             }
         });
 
+        button.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                button.setVisibility(View.GONE);
+                return true;
+            }
+        });
+
         // Add button to our overlay, then add overlay to the fragment's root layout
         overlay.addView(button);
         viewGroup.addView(overlay);
