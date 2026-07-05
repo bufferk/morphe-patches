@@ -1,3 +1,10 @@
+## [1.6.1](https://github.com/bufferk/morphe-patches/compare/v1.6.0...v1.6.1) (2026-07-05)
+
+
+### Bug Fixes
+
+* **medium:** inject at start of PostFragment.Q to prevent Verifier error ([de17b93](https://github.com/bufferk/morphe-patches/commit/de17b935495af8923a28becdcca99e9da428cd0f))
+
 # [1.6.0](https://github.com/bufferk/morphe-patches/compare/v1.5.2...v1.6.0) (2026-07-05)
 
 

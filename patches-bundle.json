@@ -1,7 +1,7 @@
 {
-  "created_at": "2026-07-05T09:24:49",
-  "description": "# [1.6.0](https://github.com/hackingguy/morphe-patches/compare/v1.5.2...v1.6.0) (2026-07-05)\n\n\n### Bug Fixes\n\n* fix notifications ([fe555c8](https://github.com/hackingguy/morphe-patches/commit/fe555c8d3c93fdf202b7296b4364c5a07329b61e))\n\n\n### Features\n\n* **medium:** add Freedium Mirror patch ([e0465c8](https://github.com/hackingguy/morphe-patches/commit/e0465c86d101e91e10f1f79e1ce02e0036a3a805))",
-  "download_url": "https://github.com/hackingguy/morphe-patches/releases/download/v1.6.0/patches-1.6.0.mpp",
-  "signature_download_url": "https://github.com/hackingguy/morphe-patches/releases/download/v1.6.0/patches-1.6.0.mpp.asc",
-  "version": "1.6.0"
+  "created_at": "2026-07-05T09:32:54",
+  "description": "## [1.6.1](https://github.com/hackingguy/morphe-patches/compare/v1.6.0...v1.6.1) (2026-07-05)\n\n\n### Bug Fixes\n\n* **medium:** inject at start of PostFragment.Q to prevent Verifier error ([de17b93](https://github.com/hackingguy/morphe-patches/commit/de17b935495af8923a28becdcca99e9da428cd0f))",
+  "download_url": "https://github.com/hackingguy/morphe-patches/releases/download/v1.6.1/patches-1.6.1.mpp",
+  "signature_download_url": "https://github.com/hackingguy/morphe-patches/releases/download/v1.6.1/patches-1.6.1.mpp.asc",
+  "version": "1.6.1"
 }
