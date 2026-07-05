@@ -1,3 +1,10 @@
+## [1.6.8](https://github.com/hackingguy/morphe-patches/compare/v1.6.7...v1.6.8) (2026-07-05)
+
+
+### Bug Fixes
+
+* **medium:** prevent status bar overlap and adjust FAB bottom margin to 76dp ([57aca3b](https://github.com/hackingguy/morphe-patches/commit/57aca3b063eeb0e15b5a1d61fb065b5cd5335875))
+
 ## [1.6.7](https://github.com/hackingguy/morphe-patches/compare/v1.6.6...v1.6.7) (2026-07-05)
 
 
