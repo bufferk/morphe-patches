@@ -78,6 +78,8 @@
       "@cleyrop-org/semantic-release-backmerge",
       {
         "backmergeBranches": [{"from": "main", "to": "dev"}],
+        "backmergeStrategy": "merge",
+        "mergeMode": "theirs",
         "clearWorkspace": true
       }
     ]
