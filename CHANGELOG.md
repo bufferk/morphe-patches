@@ -1,3 +1,9 @@
+## [1.6.10](https://github.com/bufferk/morphe-patches/compare/v1.6.9...v1.6.10) (2026-07-05)
+
+### 🐛 Bug Fixes
+
+* **morphe:** merge latest patches template improvements and update patch list generator ([d834cd1](https://github.com/bufferk/morphe-patches/commit/d834cd1a80a6f19efa51b9da3403023856a8f313))
+
 ## [1.6.9](https://github.com/bufferk/morphe-patches/compare/v1.6.8...v1.6.9) (2026-07-05)
 
 
