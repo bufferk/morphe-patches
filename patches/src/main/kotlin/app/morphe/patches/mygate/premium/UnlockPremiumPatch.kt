@@ -116,6 +116,8 @@ val unlockPremiumPatch = bytecodePatch(
             """
                 new-instance v0, Landroid/content/Intent;
                 sget-object v1, Lcom/mygate/user/app/AppController;->G:Lcom/mygate/user/app/AppController;
+                invoke-virtual {v1}, Landroid/content/Context;->getApplicationContext()Landroid/content/Context;
+                move-result-object v1
                 const-class v2, Lcom/mygate/user/modules/notifications/ui/NotificationCampaignActivity;
                 invoke-direct {v0, v1, v2}, Landroid/content/Intent;-><init>(Landroid/content/Context;Ljava/lang/Class;)V
                 const-string v1, "approvalNotification"
