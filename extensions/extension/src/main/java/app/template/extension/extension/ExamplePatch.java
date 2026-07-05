@@ -24,53 +24,56 @@ public class ExamplePatch {
         final ViewGroup viewGroup = (ViewGroup) root;
         final Context context = root.getContext();
 
-        // Create the floating button
-        final FrameLayout button = new FrameLayout(context);
-        
-        boolean isDarkMode = (context.getResources().getConfiguration().uiMode & android.content.res.Configuration.UI_MODE_NIGHT_MASK) 
-                == android.content.res.Configuration.UI_MODE_NIGHT_YES;
+        // 1. Create a transparent full-screen overlay to guarantee correct layout alignment
+        FrameLayout overlay = new FrameLayout(context);
+        overlay.setLayoutParams(new ViewGroup.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.MATCH_PARENT
+        ));
 
-        // Circular background with border matching light/dark mode UX
+        // 2. Create the pill-shaped button
+        final FrameLayout button = new FrameLayout(context);
+        FrameLayout.LayoutParams buttonLp = new FrameLayout.LayoutParams(
+                FrameLayout.LayoutParams.WRAP_CONTENT,
+                FrameLayout.LayoutParams.WRAP_CONTENT
+        );
+        buttonLp.gravity = Gravity.BOTTOM | Gravity.END;
+        buttonLp.setMargins(0, 0, dpToPx(context, 16), dpToPx(context, 16));
+        button.setLayoutParams(buttonLp);
+
+        // Rounded rectangle background (pill shape)
         GradientDrawable background = new GradientDrawable();
-        background.setShape(GradientDrawable.OVAL);
-        if (isDarkMode) {
-            background.setColor(Color.parseColor("#1E293B")); // Dark slate
-            background.setStroke(dpToPx(context, 1), Color.parseColor("#334155"));
-        } else {
-            background.setColor(Color.parseColor("#FFFFFF")); // Pure white
-            background.setStroke(dpToPx(context, 1), Color.parseColor("#E2E8F0"));
-        }
-        button.setBackground(background);
+        background.setShape(GradientDrawable.RECTANGLE);
+        background.setCornerRadius(dpToPx(context, 20));
+        background.setColor(Color.parseColor("#02B875")); // Medium Green
         
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
             button.setElevation(dpToPx(context, 6));
+            // Add a lighter green splash ripple for premium feedback
+            android.content.res.ColorStateList rippleColor = android.content.res.ColorStateList.valueOf(Color.parseColor("#33D191"));
+            android.graphics.drawable.RippleDrawable ripple = new android.graphics.drawable.RippleDrawable(rippleColor, background, null);
+            button.setBackground(ripple);
+        } else {
+            button.setBackground(background);
         }
 
-        // Add "F" text with dynamic text color
+        // Add text "Unlock" inside the pill
         TextView textView = new TextView(context);
-        textView.setText("F");
-        textView.setTextColor(isDarkMode ? Color.parseColor("#F8FAFC") : Color.parseColor("#0F172A"));
-        textView.setTextSize(20);
+        textView.setText("Unlock");
+        textView.setTextColor(Color.WHITE);
+        textView.setTextSize(14);
         textView.setTypeface(Typeface.DEFAULT_BOLD);
         textView.setGravity(Gravity.CENTER);
-        button.addView(textView, new FrameLayout.LayoutParams(
-                FrameLayout.LayoutParams.MATCH_PARENT,
-                FrameLayout.LayoutParams.MATCH_PARENT
-        ));
-
-        // Use reflection to construct CoordinatorLayout$LayoutParams dynamically with 16dp margin
-        ViewGroup.LayoutParams lp = null;
-        try {
-            Class<?> clpClass = Class.forName("androidx.coordinatorlayout.widget.CoordinatorLayout$LayoutParams");
-            lp = (ViewGroup.LayoutParams) clpClass.getConstructor(int.class, int.class).newInstance(dpToPx(context, 56), dpToPx(context, 56));
-            clpClass.getField("gravity").set(lp, Gravity.BOTTOM | Gravity.END);
-            clpClass.getMethod("setMargins", int.class, int.class, int.class, int.class).invoke(lp, 0, 0, dpToPx(context, 16), dpToPx(context, 16));
-        } catch (Exception e) {
-            FrameLayout.LayoutParams flp = new FrameLayout.LayoutParams(dpToPx(context, 56), dpToPx(context, 56));
-            flp.gravity = Gravity.BOTTOM | Gravity.END;
-            flp.setMargins(0, 0, dpToPx(context, 16), dpToPx(context, 16));
-            lp = flp;
-        }
+        
+        FrameLayout.LayoutParams textLp = new FrameLayout.LayoutParams(
+                FrameLayout.LayoutParams.WRAP_CONTENT,
+                FrameLayout.LayoutParams.WRAP_CONTENT
+        );
+        textLp.gravity = Gravity.CENTER;
+        int padLr = dpToPx(context, 16);
+        int padTb = dpToPx(context, 10);
+        textView.setPadding(padLr, padTb, padLr, padTb);
+        button.addView(textView, textLp);
 
         button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -97,7 +100,9 @@ public class ExamplePatch {
             }
         });
 
-        viewGroup.addView(button, lp);
+        // Add button to our overlay, then add overlay to the fragment's root layout
+        overlay.addView(button);
+        viewGroup.addView(overlay);
     }
 
     public static View wrapSettingsView(View composeView) {
