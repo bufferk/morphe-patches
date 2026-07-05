@@ -27,20 +27,29 @@ public class ExamplePatch {
         // Create the floating button
         final FrameLayout button = new FrameLayout(context);
         
-        // Circular background with shadow
+        boolean isDarkMode = (context.getResources().getConfiguration().uiMode & android.content.res.Configuration.UI_MODE_NIGHT_MASK) 
+                == android.content.res.Configuration.UI_MODE_NIGHT_YES;
+
+        // Circular background with border matching light/dark mode UX
         GradientDrawable background = new GradientDrawable();
         background.setShape(GradientDrawable.OVAL);
-        background.setColor(Color.parseColor("#0F172A")); // Premium dark slate color
+        if (isDarkMode) {
+            background.setColor(Color.parseColor("#1E293B")); // Dark slate
+            background.setStroke(dpToPx(context, 1), Color.parseColor("#334155"));
+        } else {
+            background.setColor(Color.parseColor("#FFFFFF")); // Pure white
+            background.setStroke(dpToPx(context, 1), Color.parseColor("#E2E8F0"));
+        }
         button.setBackground(background);
         
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
             button.setElevation(dpToPx(context, 6));
         }
 
-        // Add "F" text
+        // Add "F" text with dynamic text color
         TextView textView = new TextView(context);
         textView.setText("F");
-        textView.setTextColor(Color.WHITE);
+        textView.setTextColor(isDarkMode ? Color.parseColor("#F8FAFC") : Color.parseColor("#0F172A"));
         textView.setTextSize(20);
         textView.setTypeface(Typeface.DEFAULT_BOLD);
         textView.setGravity(Gravity.CENTER);
@@ -49,17 +58,17 @@ public class ExamplePatch {
                 FrameLayout.LayoutParams.MATCH_PARENT
         ));
 
-        // Use reflection to construct CoordinatorLayout$LayoutParams dynamically
+        // Use reflection to construct CoordinatorLayout$LayoutParams dynamically with 16dp margin
         ViewGroup.LayoutParams lp = null;
         try {
             Class<?> clpClass = Class.forName("androidx.coordinatorlayout.widget.CoordinatorLayout$LayoutParams");
             lp = (ViewGroup.LayoutParams) clpClass.getConstructor(int.class, int.class).newInstance(dpToPx(context, 56), dpToPx(context, 56));
             clpClass.getField("gravity").set(lp, Gravity.BOTTOM | Gravity.END);
-            clpClass.getMethod("setMargins", int.class, int.class, int.class, int.class).invoke(lp, 0, 0, dpToPx(context, 16), dpToPx(context, 80));
+            clpClass.getMethod("setMargins", int.class, int.class, int.class, int.class).invoke(lp, 0, 0, dpToPx(context, 16), dpToPx(context, 16));
         } catch (Exception e) {
             FrameLayout.LayoutParams flp = new FrameLayout.LayoutParams(dpToPx(context, 56), dpToPx(context, 56));
             flp.gravity = Gravity.BOTTOM | Gravity.END;
-            flp.setMargins(0, 0, dpToPx(context, 16), dpToPx(context, 80));
+            flp.setMargins(0, 0, dpToPx(context, 16), dpToPx(context, 16));
             lp = flp;
         }
 
@@ -94,12 +103,18 @@ public class ExamplePatch {
     public static View wrapSettingsView(View composeView) {
         final Context context = composeView.getContext();
         
+        boolean isDarkMode = (context.getResources().getConfiguration().uiMode & android.content.res.Configuration.UI_MODE_NIGHT_MASK) 
+                == android.content.res.Configuration.UI_MODE_NIGHT_YES;
+
         LinearLayout rootLayout = new LinearLayout(context);
         rootLayout.setOrientation(LinearLayout.VERTICAL);
         rootLayout.setLayoutParams(new ViewGroup.LayoutParams(
                 ViewGroup.LayoutParams.MATCH_PARENT,
                 ViewGroup.LayoutParams.MATCH_PARENT
         ));
+
+        // Use same background color as settings screen
+        rootLayout.setBackgroundColor(isDarkMode ? Color.BLACK : Color.WHITE);
 
         // Create the settings row layout
         RelativeLayout settingsRow = new RelativeLayout(context);
@@ -108,13 +123,19 @@ public class ExamplePatch {
                 dpToPx(context, 72)
         ));
         settingsRow.setPadding(dpToPx(context, 16), 0, dpToPx(context, 16), 0);
-        settingsRow.setBackgroundColor(Color.parseColor("#1E293B")); // Pinned premium color
+
+        // Native selectable item background (ripple effect)
+        int[] attrs = new int[]{android.R.attr.selectableItemBackground};
+        android.content.res.TypedArray ta = context.obtainStyledAttributes(attrs);
+        android.graphics.drawable.Drawable ripple = ta.getDrawable(0);
+        ta.recycle();
+        settingsRow.setBackground(ripple);
 
         // Title text
         TextView title = new TextView(context);
         title.setText("Freedium Mirror Server");
         title.setTextSize(16);
-        title.setTextColor(Color.WHITE);
+        title.setTextColor(isDarkMode ? Color.WHITE : Color.BLACK);
         title.setTypeface(Typeface.DEFAULT_BOLD);
         
         RelativeLayout.LayoutParams titleLp = new RelativeLayout.LayoutParams(
@@ -130,8 +151,8 @@ public class ExamplePatch {
         final SharedPreferences prefs = context.getSharedPreferences("freedium_prefs", Context.MODE_PRIVATE);
         String currentHost = prefs.getString("freedium_host", "freedium-mirror.cfd");
         subtitle.setText("Current: " + currentHost);
-        subtitle.setTextSize(14);
-        subtitle.setTextColor(Color.parseColor("#94A3B8"));
+        subtitle.setTextSize(13);
+        subtitle.setTextColor(isDarkMode ? Color.parseColor("#94A3B8") : Color.parseColor("#64748B"));
         
         RelativeLayout.LayoutParams subtitleLp = new RelativeLayout.LayoutParams(
                 RelativeLayout.LayoutParams.WRAP_CONTENT,
@@ -180,13 +201,13 @@ public class ExamplePatch {
         // Add settings row
         rootLayout.addView(settingsRow);
         
-        // Add a small divider
+        // Add a small divider matching theme divider color
         View divider = new View(context);
         divider.setLayoutParams(new LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.MATCH_PARENT,
                 dpToPx(context, 1)
         ));
-        divider.setBackgroundColor(Color.parseColor("#334155"));
+        divider.setBackgroundColor(isDarkMode ? Color.parseColor("#1E293B") : Color.parseColor("#E2E8F0"));
         rootLayout.addView(divider);
 
         // Add compose view
