@@ -76,6 +76,100 @@ This repository provides custom, community-developed bytecode patches for variou
 ## 🩹 Patches
 
 <!-- PATCHES_START EXPANDED -->
+> **[v1.6.10](https://github.com/hackingguy/morphe-patches/releases/tag/v1.6.10)**&nbsp;&nbsp;•&nbsp;&nbsp;`main`&nbsp;&nbsp;•&nbsp;&nbsp;14 patches total
+<details open>
+<summary>📦 Bounce Companion&nbsp;&nbsp;•&nbsp;&nbsp;1 patch</summary>
+<br>
+
+**🎯 Supported versions:**
+
+| 7.0.7 |
+| :---: |
+
+| 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
+|----------|----------------|-----------|
+| [Bypass license check](#bypass-license-check) | Bypasses the Google Play LVL backend license check, allowing full app access without activation. |  |
+
+</details>
+
+<details open>
+<summary>📦 Truecaller&nbsp;&nbsp;•&nbsp;&nbsp;7 patches</summary>
+<br>
+
+**🎯 Supported versions:**
+
+| 26.10.6 |
+| :---: |
+
+| 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
+|----------|----------------|-----------|
+| [Disable analytics](#disable-analytics) | Suppresses Truecaller's CleverTap behavioural event tracking to prevent user-activity telemetry. |  |
+| [Enable premium features](#enable-premium-features) | Unlocks all client-side premium features by bypassing the feature-availability gate. |  |
+| [Hide 'Get Premium' banners](#hide-get-premium-banners) | Dismisses premium upgrade prompts and paywall screens automatically. |  |
+| [Hide ads](#hide-ads) | Removes ads from the after-call screen and caller-ID overlay. |  |
+| [Hide premium upgrade prompts](#hide-premium-upgrade-prompts) | Removes 'Get Premium' and 'Switch to Premium' buttons from the nav bar, settings, and profile. |  |
+| [Mock premium](#mock-premium) | Always shows the premium/gold badge and unlocks premium UI features. |  |
+| [Remove Premium UI](#remove-premium-ui) | Removes the Premium tab from the bottom navigation bar and the Premium row in the profile section. |  |
+
+</details>
+
+<details open>
+<summary>📦 MyGate&nbsp;&nbsp;•&nbsp;&nbsp;3 patches</summary>
+<br>
+
+**🎯 Supported versions:**
+
+| 7.26.1 |
+| :---: |
+
+| 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
+|----------|----------------|-----------|
+| [Flutter Premium Bypass](#flutter-premium-bypass) | Forces premium status inside the JSON payload sent to Flutter |  |
+| [Hide ads](#hide-ads) | Removes MyGate in-app ads (pre-approval screen, allow-entries screen, activity feed, and visitor profile masthead). |  |
+| [Unlock premium](#unlock-premium) | Unlocks all MyGate premium features: spoofs USER_PREMIUM_PLAN status, suppresses upgrade dialogs and paywalls, enables frequent pre-approvals for deliveries, cabs and visiting help, unlocks surprise delivery and the always-approve-entries toggle. |  |
+
+</details>
+
+<details open>
+<summary>📦 Medium&nbsp;&nbsp;•&nbsp;&nbsp;1 patch</summary>
+<br>
+
+**🎯 Supported versions:**
+
+| 4.5.1302097 |
+| :---: |
+
+| 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
+|----------|----------------|-----------|
+| [Freedium](#freedium) | Adds a profile setting to choose the Freedium Mirror host, and a floating button on articles that opens the current article using the chosen Freedium Mirror in a webview. |  |
+
+</details>
+
+<details open>
+<summary>📦 Splitwise&nbsp;&nbsp;•&nbsp;&nbsp;1 patch</summary>
+<br>
+
+**🎯 Supported versions:**
+
+| 26.4.4 |
+| :---: |
+
+| 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
+|----------|----------------|-----------|
+| [Unlock Pro](#unlock-pro) | Spoofs Splitwise Pro subscription status everywhere it is checked — bypasses the server-driven feature gate (charts, receipt scanning, currency conversion, default splits, auto-split, transaction import, itemization), forces Person.isPro() to true for receipt quality and UI gating, and suppresses all in-app upsell ad banners (home-screen, recent activity, post-add-expense). Works entirely client-side with no server interaction. |  |
+
+</details>
+
+<details open>
+<summary>📦 com.overdevs.at4k&nbsp;&nbsp;•&nbsp;&nbsp;1 patch</summary>
+<br>
+
+| 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
+|----------|----------------|-----------|
+| [Unlock premium](#unlock-premium) | Unlocks all AT4K premium features by forcing the premium status to true. |  |
+
+</details>
+
 <!-- PATCHES_END -->
 
 ---
