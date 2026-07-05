@@ -1,3 +1,15 @@
+# [1.6.0](https://github.com/bufferk/morphe-patches/compare/v1.5.2...v1.6.0) (2026-07-05)
+
+
+### Bug Fixes
+
+* fix notifications ([fe555c8](https://github.com/bufferk/morphe-patches/commit/fe555c8d3c93fdf202b7296b4364c5a07329b61e))
+
+
+### Features
+
+* **medium:** add Freedium Mirror patch ([e0465c8](https://github.com/bufferk/morphe-patches/commit/e0465c86d101e91e10f1f79e1ce02e0036a3a805))
+
 ## [1.5.2](https://github.com/bufferk/morphe-patches/compare/v1.5.1...v1.5.2) (2026-05-09)
 
 
