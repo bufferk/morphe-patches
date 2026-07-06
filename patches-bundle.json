@@ -1,7 +1,7 @@
 {
-  "created_at": "2026-07-06T08:07:54",
-  "description": "## [1.6.15-dev.1](https://github.com/bufferk/morphe-patches/compare/v1.6.14...v1.6.15-dev.1) (2026-07-06)\n\n### 🐛 Bug Fixes\n\n* **mygate:** make ShowUpgradeDialogFingerprint parameter-agnostic for robust matching across versions ([f8970f4](https://github.com/bufferk/morphe-patches/commit/f8970f4ca3248b8d36a1ad5504a5f4bf44e562ff))",
-  "download_url": "https://github.com/bufferk/morphe-patches/releases/download/v1.6.15-dev.1/patches-1.6.15-dev.1.mpp",
+  "created_at": "2026-07-06T08:18:43",
+  "description": "## [1.6.15-dev.2](https://github.com/bufferk/morphe-patches/compare/v1.6.15-dev.1...v1.6.15-dev.2) (2026-07-06)\n\n### 🐛 Bug Fixes\n\n* **mygate:** dynamically resolve obfuscated MutableLiveData.setValue method in test notification spoofing ([d6dbf80](https://github.com/bufferk/morphe-patches/commit/d6dbf800291b4b42cd5e6d8489b5b02dec2e00c1))",
+  "download_url": "https://github.com/bufferk/morphe-patches/releases/download/v1.6.15-dev.2/patches-1.6.15-dev.2.mpp",
   "signature_download_url": "",
-  "version": "1.6.15-dev.1"
+  "version": "1.6.15-dev.2"
 }

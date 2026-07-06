@@ -1,3 +1,9 @@
+## [1.6.15-dev.2](https://github.com/bufferk/morphe-patches/compare/v1.6.15-dev.1...v1.6.15-dev.2) (2026-07-06)
+
+### 🐛 Bug Fixes
+
+* **mygate:** dynamically resolve obfuscated MutableLiveData.setValue method in test notification spoofing ([d6dbf80](https://github.com/bufferk/morphe-patches/commit/d6dbf800291b4b42cd5e6d8489b5b02dec2e00c1))
+
 ## [1.6.15-dev.1](https://github.com/bufferk/morphe-patches/compare/v1.6.14...v1.6.15-dev.1) (2026-07-06)
 
 ### 🐛 Bug Fixes
