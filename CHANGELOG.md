@@ -1,3 +1,9 @@
+## [1.6.15-dev.6](https://github.com/bufferk/morphe-patches/compare/v1.6.15-dev.5...v1.6.15-dev.6) (2026-07-06)
+
+### 🐛 Bug Fixes
+
+* **mygate:** fake app notification settings response to resolve e-intercom troubleshooting failure ([e72ca83](https://github.com/bufferk/morphe-patches/commit/e72ca83495cc2df4670a17c54a233ec2bd5feccc))
+
 ## [1.6.15-dev.5](https://github.com/bufferk/morphe-patches/compare/v1.6.15-dev.4...v1.6.15-dev.5) (2026-07-06)
 
 ### 🐛 Bug Fixes
