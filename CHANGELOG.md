@@ -1,4 +1,4 @@
-## [1.6.14-dev.1](https://github.com/bufferk/morphe-patches/compare/v1.6.13...v1.6.14-dev.1) (2026-07-06)
+## [1.6.14](https://github.com/bufferk/morphe-patches/compare/v1.6.13...v1.6.14) (2026-07-06)
 
 ### 🐛 Bug Fixes
 
