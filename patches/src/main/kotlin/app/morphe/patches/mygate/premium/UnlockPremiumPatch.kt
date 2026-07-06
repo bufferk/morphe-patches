@@ -170,11 +170,9 @@ val unlockPremiumPatch = bytecodePatch(
         // success and failure methods to completely ignore the real API response and
         // ALWAYS emit a valid, non-null NotificationSettings object. This ensures `X` 
         // in the fragment is never null, allowing our boolean getters to do their job.
-        val viewModelClass = classDefBy("Lcom/mygate/user/modules/testnotification/ui/viewmodel/TestNotificationTroubleshootingViewModel;")
-        val testNotificationFailureMethod = viewModelClass.methods.first { it.name == "onTestNotificationManagerFailure" }
-        val liveDataMethodName = testNotificationFailureMethod.implementation?.instructions
-            ?.mapNotNull { (it as? com.android.tools.smali.dexlib2.iface.instruction.ReferenceInstruction)?.reference as? com.android.tools.smali.dexlib2.iface.reference.MethodReference }
-            ?.firstOrNull { it.definingClass == "Landroidx/lifecycle/MutableLiveData;" }
+        val liveDataClass = classDefBy("Landroidx/lifecycle/MutableLiveData;")
+        val liveDataMethodName = liveDataClass.methods
+            .firstOrNull { it.parameterTypes.size == 1 && it.parameterTypes[0] == "Ljava/lang/Object;" && it.returnType == "V" }
             ?.name ?: "l"
 
         val emitFakeNotificationSettings = """
