@@ -1,3 +1,9 @@
+## [1.6.15-dev.1](https://github.com/bufferk/morphe-patches/compare/v1.6.14...v1.6.15-dev.1) (2026-07-06)
+
+### 🐛 Bug Fixes
+
+* **mygate:** make ShowUpgradeDialogFingerprint parameter-agnostic for robust matching across versions ([f8970f4](https://github.com/bufferk/morphe-patches/commit/f8970f4ca3248b8d36a1ad5504a5f4bf44e562ff))
+
 ## [1.6.14](https://github.com/bufferk/morphe-patches/compare/v1.6.13...v1.6.14) (2026-07-06)
 
 ### 🐛 Bug Fixes
