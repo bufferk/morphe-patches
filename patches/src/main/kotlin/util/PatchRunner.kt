@@ -41,30 +41,39 @@ fun main() {
     contextConstructor.isAccessible = true
     val context = contextConstructor.newInstance(config, packageMetadata)
     
-    println("Resolving ShowUpgradeDialogFingerprint...")
-    try {
-        val fingerprintClass = Class.forName("app.morphe.patcher.Fingerprint")
-        val matchMethod = fingerprintClass.getMethod("match", contextClass)
-        
-        // Let's get the ShowUpgradeDialogFingerprint singleton instance
-        val targetFingerprintClass = Class.forName("app.morphe.patches.mygate.premium.ShowUpgradeDialogFingerprint")
-        val fingerprintInstance = targetFingerprintClass.getField("INSTANCE").get(null)
-        
-        val match = matchMethod.invoke(fingerprintInstance, context)
-        println("Match successful!")
-        
-        val matchClass = Class.forName("app.morphe.patcher.Match")
-        val getMethodMethod = matchClass.getMethod("getMethod")
-        val method = getMethodMethod.invoke(match)
-        
-        val methodClass = Class.forName("app.morphe.patcher.util.proxy.mutableTypes.MutableMethod")
-        val getNameMethod = methodClass.getMethod("getName")
-        val getDefiningClassMethod = methodClass.getMethod("getDefiningClass")
-        
-        println("Class: ${getDefiningClassMethod.invoke(method)}")
-        println("Method: ${getNameMethod.invoke(method)}")
-    } catch (e: Exception) {
-        println("Match failed:")
-        e.printStackTrace()
+    println("Testing all Premium fingerprints...")
+    val fingerprintClass = Class.forName("app.morphe.patcher.Fingerprint")
+    val matchMethod = fingerprintClass.getMethod("match", contextClass)
+    
+    val matchClass = Class.forName("app.morphe.patcher.Match")
+    val getMethodMethod = matchClass.getMethod("getMethod")
+    
+    val methodClass = Class.forName("app.morphe.patcher.util.proxy.mutableTypes.MutableMethod")
+    val getMethodNameMethod = methodClass.getMethod("getName")
+    val getDefiningClassMethod = methodClass.getMethod("getDefiningClass")
+    
+    val fingerprints = listOf(
+        "IsPremiumUserFingerprint",
+        "ShowUpgradeDialogFingerprint",
+        "CommonUtilityNotificationIntentFingerprint",
+        "ReadPrefTokenNotFoundFingerprint",
+        "AppNotificationSettingsGetEintercomFingerprint",
+        "NotificationSettingsGetNotifyFingerprint",
+        "TroubleshootingSettingsSuccessFingerprint",
+        "TroubleshootingSettingsFailureFingerprint",
+        "TroubleshootingAppSettingsSuccessFingerprint",
+        "TroubleshootingAppSettingsFailureFingerprint"
+    )
+    
+    for (name in fingerprints) {
+        try {
+            val fpClass = Class.forName("app.morphe.patches.mygate.premium.$name")
+            val instance = fpClass.getField("INSTANCE").get(null)
+            val match = matchMethod.invoke(instance, context)
+            val method = getMethodMethod.invoke(match)
+            println("Fingerprint $name: MATCHED -> ${getDefiningClassMethod.invoke(method)}.${getMethodNameMethod.invoke(method)}")
+        } catch (e: Exception) {
+            println("Fingerprint $name: FAILED -> ${e.cause?.message ?: e.message}")
+        }
     }
 }

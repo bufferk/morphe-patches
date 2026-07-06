@@ -6,6 +6,7 @@
  */
 package app.morphe.patches.mygate.premium
 
+import com.android.tools.smali.dexlib2.Opcode
 import app.morphe.patcher.extensions.InstructionExtensions.addInstructions
 import app.morphe.patcher.extensions.InstructionExtensions.removeInstructions
 import app.morphe.patcher.patch.bytecodePatch
@@ -195,6 +196,38 @@ val unlockPremiumPatch = bytecodePatch(
         TroubleshootingSettingsFailureFingerprint.method.apply {
             removeInstructions(0)
             addInstructions(0, emitFakeNotificationSettings)
+        }
+
+        val appLiveDataField = TroubleshootingAppSettingsSuccessFingerprint.method.implementation!!.instructions
+            .filterIsInstance<com.android.tools.smali.dexlib2.iface.instruction.ReferenceInstruction>()
+            .map { it.reference }
+            .filterIsInstance<com.android.tools.smali.dexlib2.iface.reference.FieldReference>()
+            .first()
+        val appLiveDataFieldName = appLiveDataField.name
+        val appLiveDataClassName = appLiveDataField.type
+
+        val emitFakeAppNotificationSettings = """
+            new-instance v0, Ljava/util/ArrayList;
+            invoke-direct {v0}, Ljava/util/ArrayList;-><init>()V
+            const/4 v1, 0x1
+            invoke-static {v1}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
+            move-result-object v1
+            new-instance v2, Lcom/mygate/user/modules/notifications/entity/AppNotificationSettings;
+            const-string v3, ""
+            invoke-direct {v2, v1, v3, v0}, Lcom/mygate/user/modules/notifications/entity/AppNotificationSettings;-><init>(Ljava/lang/Integer;Ljava/lang/String;Ljava/util/List;)V
+            iget-object v1, p0, Lcom/mygate/user/modules/testnotification/ui/viewmodel/TestNotificationTroubleshootingViewModel;->$appLiveDataFieldName:$appLiveDataClassName
+            invoke-virtual {v1, v2}, $appLiveDataClassName->$liveDataMethodName(Ljava/lang/Object;)V
+            return-void
+        """.trimIndent()
+
+        TroubleshootingAppSettingsSuccessFingerprint.method.apply {
+            removeInstructions(0)
+            addInstructions(0, emitFakeAppNotificationSettings)
+        }
+
+        TroubleshootingAppSettingsFailureFingerprint.method.apply {
+            removeInstructions(0)
+            addInstructions(0, emitFakeAppNotificationSettings)
         }
     }
 }

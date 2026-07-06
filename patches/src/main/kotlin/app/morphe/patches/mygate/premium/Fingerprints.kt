@@ -226,3 +226,23 @@ internal object TroubleshootingSettingsFailureFingerprint : Fingerprint(
     returnType = "V",
     parameters = listOf("Lcom/mygate/user/modules/notifications/events/manager/INotificationSettingsManagerFailureEvent;")
 )
+
+/**
+ * Fingerprint for TestNotificationTroubleshootingViewModel.onNotificationSettingsManagerSuccess(IGetAppNotificationSettingManagerSuccess)
+ */
+internal object TroubleshootingAppSettingsSuccessFingerprint : Fingerprint(
+    definingClass = "Lcom/mygate/user/modules/testnotification/ui/viewmodel/TestNotificationTroubleshootingViewModel;",
+    name = "onNotificationSettingsManagerSuccess",
+    returnType = "V",
+    parameters = listOf("Lcom/mygate/user/modules/notifications/events/manager/IGetAppNotificationSettingManagerSuccess;")
+)
+
+/**
+ * Fingerprint for TestNotificationTroubleshootingViewModel.onNotificationSettingsManagerFailure(IGetAppNotificationSettingManagerFailure)
+ */
+internal object TroubleshootingAppSettingsFailureFingerprint : Fingerprint(
+    definingClass = "Lcom/mygate/user/modules/testnotification/ui/viewmodel/TestNotificationTroubleshootingViewModel;",
+    name = "onNotificationSettingsManagerFailure",
+    returnType = "V",
+    parameters = listOf("Lcom/mygate/user/modules/notifications/events/manager/IGetAppNotificationSettingManagerFailure;")
+)
