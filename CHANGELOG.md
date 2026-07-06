@@ -1,3 +1,9 @@
+## [1.6.15-dev.3](https://github.com/bufferk/morphe-patches/compare/v1.6.15-dev.2...v1.6.15-dev.3) (2026-07-06)
+
+### 🐛 Bug Fixes
+
+* **mygate:** directly query MutableLiveData class def to resolve setValue/postValue method name ([87b70cd](https://github.com/bufferk/morphe-patches/commit/87b70cd4dec5d1497a1a2c6fa239a6eafcd8a974))
+
 ## [1.6.15-dev.2](https://github.com/bufferk/morphe-patches/compare/v1.6.15-dev.1...v1.6.15-dev.2) (2026-07-06)
 
 ### 🐛 Bug Fixes
