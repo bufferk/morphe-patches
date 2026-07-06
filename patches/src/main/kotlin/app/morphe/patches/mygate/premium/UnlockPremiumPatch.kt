@@ -183,7 +183,7 @@ val unlockPremiumPatch = bytecodePatch(
             new-instance v0, Lcom/mygate/user/modules/notifications/entity/NotificationSettings;
             invoke-direct {v0}, Lcom/mygate/user/modules/notifications/entity/NotificationSettings;-><init>()V
             iget-object v1, p0, Lcom/mygate/user/modules/testnotification/ui/viewmodel/TestNotificationTroubleshootingViewModel;->c:$liveDataClassName
-            invoke-virtual {v1, v0}, $liveDataClassName;->$liveDataMethodName(Ljava/lang/Object;)V
+            invoke-virtual {v1, v0}, $liveDataClassName->$liveDataMethodName(Ljava/lang/Object;)V
             return-void
         """.trimIndent()
 
