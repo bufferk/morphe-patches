@@ -1,3 +1,9 @@
+## [1.6.15-dev.4](https://github.com/bufferk/morphe-patches/compare/v1.6.15-dev.3...v1.6.15-dev.4) (2026-07-06)
+
+### 🐛 Bug Fixes
+
+* **mygate:** dynamically resolve both LiveData class name and method name to support obfuscated configurations ([afff4b4](https://github.com/bufferk/morphe-patches/commit/afff4b409fc5bbf6ae0a1a8df2e5bce5e2fc37ed))
+
 ## [1.6.15-dev.3](https://github.com/bufferk/morphe-patches/compare/v1.6.15-dev.2...v1.6.15-dev.3) (2026-07-06)
 
 ### 🐛 Bug Fixes

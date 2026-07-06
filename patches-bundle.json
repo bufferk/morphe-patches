@@ -1,7 +1,7 @@
 {
-  "created_at": "2026-07-06T08:29:58",
-  "description": "## [1.6.15-dev.3](https://github.com/bufferk/morphe-patches/compare/v1.6.15-dev.2...v1.6.15-dev.3) (2026-07-06)\n\n### 🐛 Bug Fixes\n\n* **mygate:** directly query MutableLiveData class def to resolve setValue/postValue method name ([87b70cd](https://github.com/bufferk/morphe-patches/commit/87b70cd4dec5d1497a1a2c6fa239a6eafcd8a974))",
-  "download_url": "https://github.com/bufferk/morphe-patches/releases/download/v1.6.15-dev.3/patches-1.6.15-dev.3.mpp",
+  "created_at": "2026-07-06T08:37:37",
+  "description": "## [1.6.15-dev.4](https://github.com/bufferk/morphe-patches/compare/v1.6.15-dev.3...v1.6.15-dev.4) (2026-07-06)\n\n### 🐛 Bug Fixes\n\n* **mygate:** dynamically resolve both LiveData class name and method name to support obfuscated configurations ([afff4b4](https://github.com/bufferk/morphe-patches/commit/afff4b409fc5bbf6ae0a1a8df2e5bce5e2fc37ed))",
+  "download_url": "https://github.com/bufferk/morphe-patches/releases/download/v1.6.15-dev.4/patches-1.6.15-dev.4.mpp",
   "signature_download_url": "",
-  "version": "1.6.15-dev.3"
+  "version": "1.6.15-dev.4"
 }
