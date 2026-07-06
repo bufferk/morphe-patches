@@ -1,3 +1,9 @@
+## [1.6.14-dev.1](https://github.com/bufferk/morphe-patches/compare/v1.6.13...v1.6.14-dev.1) (2026-07-06)
+
+### 🐛 Bug Fixes
+
+* **mygate:** use robust Dialog.show methodCall filter for ShowUpgradeDialogFingerprint to bypass log stripping ([7c8f763](https://github.com/bufferk/morphe-patches/commit/7c8f7637e7f3e2d11c9ff249154a36303751b755))
+
 ## [1.6.13](https://github.com/bufferk/morphe-patches/compare/v1.6.12...v1.6.13) (2026-07-05)
 
 ### 🐛 Bug Fixes
