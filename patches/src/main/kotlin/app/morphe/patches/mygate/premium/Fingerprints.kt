@@ -63,7 +63,6 @@ internal object GetCombinedUserPlanStatusFingerprint : Fingerprint(
 internal object ShowUpgradeDialogFingerprint : Fingerprint(
     definingClass = "Lcom/mygate/user/utilities/KotlinUtils\$Companion;",
     returnType = "V",
-    parameters = listOf("Landroidx/fragment/app/FragmentActivity;"),
     filters = listOf(
         app.morphe.patcher.methodCall(
             definingClass = "Landroid/app/Dialog;",
@@ -71,7 +70,10 @@ internal object ShowUpgradeDialogFingerprint : Fingerprint(
             returnType = "V",
             parameters = emptyList()
         )
-    )
+    ),
+    custom = { method, _ ->
+        method.parameters.size == 1
+    }
 )
 
 /**
