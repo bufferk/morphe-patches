@@ -1,7 +1,7 @@
 {
-  "created_at": "2026-07-06T08:37:37",
-  "description": "## [1.6.15-dev.4](https://github.com/bufferk/morphe-patches/compare/v1.6.15-dev.3...v1.6.15-dev.4) (2026-07-06)\n\n### 🐛 Bug Fixes\n\n* **mygate:** dynamically resolve both LiveData class name and method name to support obfuscated configurations ([afff4b4](https://github.com/bufferk/morphe-patches/commit/afff4b409fc5bbf6ae0a1a8df2e5bce5e2fc37ed))",
-  "download_url": "https://github.com/bufferk/morphe-patches/releases/download/v1.6.15-dev.4/patches-1.6.15-dev.4.mpp",
+  "created_at": "2026-07-06T08:40:56",
+  "description": "## [1.6.15-dev.5](https://github.com/bufferk/morphe-patches/compare/v1.6.15-dev.4...v1.6.15-dev.5) (2026-07-06)\n\n### 🐛 Bug Fixes\n\n* **mygate:** remove double semicolon in dynamic invoke-virtual smali template ([dabd1fb](https://github.com/bufferk/morphe-patches/commit/dabd1fbaf34c8f12a803a83d10355faf1bdd8ca3))",
+  "download_url": "https://github.com/bufferk/morphe-patches/releases/download/v1.6.15-dev.5/patches-1.6.15-dev.5.mpp",
   "signature_download_url": "",
-  "version": "1.6.15-dev.4"
+  "version": "1.6.15-dev.5"
 }

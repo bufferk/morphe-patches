@@ -1,3 +1,9 @@
+## [1.6.15-dev.5](https://github.com/bufferk/morphe-patches/compare/v1.6.15-dev.4...v1.6.15-dev.5) (2026-07-06)
+
+### 🐛 Bug Fixes
+
+* **mygate:** remove double semicolon in dynamic invoke-virtual smali template ([dabd1fb](https://github.com/bufferk/morphe-patches/commit/dabd1fbaf34c8f12a803a83d10355faf1bdd8ca3))
+
 ## [1.6.15-dev.4](https://github.com/bufferk/morphe-patches/compare/v1.6.15-dev.3...v1.6.15-dev.4) (2026-07-06)
 
 ### 🐛 Bug Fixes
