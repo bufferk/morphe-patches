@@ -170,7 +170,11 @@ val unlockPremiumPatch = bytecodePatch(
         // success and failure methods to completely ignore the real API response and
         // ALWAYS emit a valid, non-null NotificationSettings object. This ensures `X` 
         // in the fragment is never null, allowing our boolean getters to do their job.
-        val liveDataClass = classDefBy("Landroidx/lifecycle/MutableLiveData;")
+        val viewModelClass = classDefBy("Lcom/mygate/user/modules/testnotification/ui/viewmodel/TestNotificationTroubleshootingViewModel;")
+        val liveDataField = viewModelClass.fields.first { it.name == "c" }
+        val liveDataClassName = liveDataField.type
+        
+        val liveDataClass = classDefBy(liveDataClassName)
         val liveDataMethodName = liveDataClass.methods
             .firstOrNull { it.parameterTypes.size == 1 && it.parameterTypes[0] == "Ljava/lang/Object;" && it.returnType == "V" }
             ?.name ?: "l"
@@ -178,8 +182,8 @@ val unlockPremiumPatch = bytecodePatch(
         val emitFakeNotificationSettings = """
             new-instance v0, Lcom/mygate/user/modules/notifications/entity/NotificationSettings;
             invoke-direct {v0}, Lcom/mygate/user/modules/notifications/entity/NotificationSettings;-><init>()V
-            iget-object v1, p0, Lcom/mygate/user/modules/testnotification/ui/viewmodel/TestNotificationTroubleshootingViewModel;->c:Landroidx/lifecycle/MutableLiveData;
-            invoke-virtual {v1, v0}, Landroidx/lifecycle/MutableLiveData;->$liveDataMethodName(Ljava/lang/Object;)V
+            iget-object v1, p0, Lcom/mygate/user/modules/testnotification/ui/viewmodel/TestNotificationTroubleshootingViewModel;->c:$liveDataClassName
+            invoke-virtual {v1, v0}, $liveDataClassName;->$liveDataMethodName(Ljava/lang/Object;)V
             return-void
         """.trimIndent()
 
