@@ -1,3 +1,9 @@
+## [1.6.15-dev.7](https://github.com/bufferk/morphe-patches/compare/v1.6.15-dev.6...v1.6.15-dev.7) (2026-07-10)
+
+### 🐛 Bug Fixes
+
+* **mygate:** spoof firebase installations package certificate signature SHA-1 to restore push notifications ([1a4c9d8](https://github.com/bufferk/morphe-patches/commit/1a4c9d8a51f2cd7f8a6749e94484a7352b41bf52))
+
 ## [1.6.15-dev.6](https://github.com/bufferk/morphe-patches/compare/v1.6.15-dev.5...v1.6.15-dev.6) (2026-07-06)
 
 ### 🐛 Bug Fixes
