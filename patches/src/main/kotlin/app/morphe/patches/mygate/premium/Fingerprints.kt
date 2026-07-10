@@ -246,3 +246,18 @@ internal object TroubleshootingAppSettingsFailureFingerprint : Fingerprint(
     returnType = "V",
     parameters = listOf("Lcom/mygate/user/modules/notifications/events/manager/IGetAppNotificationSettingManagerFailure;")
 )
+
+/**
+ * Fingerprint for the Firebase installations openHttpURLConnection method.
+ */
+internal object OpenHttpUrlConnectionFingerprint : Fingerprint(
+    returnType = "Ljava/net/HttpURLConnection;",
+    parameters = listOf(
+        "Ljava/net/URL;",
+        "Ljava/lang/String;"
+    ),
+    strings = listOf(
+        "X-Android-Cert",
+        "Firebase Installations Service is unavailable. Please try again later."
+    )
+)

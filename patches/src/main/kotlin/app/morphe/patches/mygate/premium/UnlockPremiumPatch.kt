@@ -7,6 +7,12 @@
 package app.morphe.patches.mygate.premium
 
 import com.android.tools.smali.dexlib2.Opcode
+import com.android.tools.smali.dexlib2.builder.BuilderInstruction
+import com.android.tools.smali.dexlib2.iface.instruction.FiveRegisterInstruction
+import com.android.tools.smali.dexlib2.iface.instruction.ReferenceInstruction
+import com.android.tools.smali.dexlib2.iface.reference.MethodReference
+import app.morphe.patcher.extensions.InstructionExtensions.addInstruction
+import app.morphe.patcher.extensions.InstructionExtensions.instructions
 import app.morphe.patcher.extensions.InstructionExtensions.addInstructions
 import app.morphe.patcher.extensions.InstructionExtensions.removeInstructions
 import app.morphe.patcher.patch.bytecodePatch
@@ -228,6 +234,44 @@ val unlockPremiumPatch = bytecodePatch(
         TroubleshootingAppSettingsFailureFingerprint.method.apply {
             removeInstructions(0)
             addInstructions(0, emitFakeAppNotificationSettings)
+        }
+
+        // ── 11. Spoof Firebase installations certificate fingerprint hash ────────────
+        // Re-signing the APK breaks Firebase push notifications because Firebase checks
+        // that the X-Android-Cert header matches the original certificate hash.
+        // We override the header value at runtime to use the original developer cert's SHA-1.
+        OpenHttpUrlConnectionFingerprint.method.apply {
+            val originalCertHash = "AAB7E367980DA927FB146E862057CC87CD766987"
+            
+            // 1. Find the index of the instruction containing the string "X-Android-Cert"
+            val xAndroidCertIndex = OpenHttpUrlConnectionFingerprint.stringMatches.firstOrNull()?.index
+            if (xAndroidCertIndex != null) {
+                // 2. Scan forward to find the next call to HttpURLConnection.addRequestProperty
+                var addRequestPropertyInstruction: BuilderInstruction? = null
+                for (i in xAndroidCertIndex until instructions.size) {
+                    val instr = instructions[i] ?: continue
+                    if (instr.opcode == Opcode.INVOKE_VIRTUAL) {
+                        val ref = (instr as? ReferenceInstruction)?.reference as? MethodReference
+                        if (ref?.name == "addRequestProperty") {
+                            addRequestPropertyInstruction = instr
+                            break
+                        }
+                    }
+                }
+
+                if (addRequestPropertyInstruction != null) {
+                    // 3. Extract the register index for parameter 2 (registerE in FiveRegisterInstruction)
+                    val valueRegister = (addRequestPropertyInstruction as FiveRegisterInstruction).registerE
+                    
+                    // 4. Inject const-string instruction before the invoke-virtual instruction to override the cert hash
+                    addInstruction(
+                        index = addRequestPropertyInstruction.location.index,
+                        smaliInstructions = """
+                            const-string v$valueRegister, "$originalCertHash"
+                        """
+                    )
+                }
+            }
         }
     }
 }
