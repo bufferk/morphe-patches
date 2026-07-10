@@ -62,7 +62,8 @@ fun main() {
         "TroubleshootingSettingsSuccessFingerprint",
         "TroubleshootingSettingsFailureFingerprint",
         "TroubleshootingAppSettingsSuccessFingerprint",
-        "TroubleshootingAppSettingsFailureFingerprint"
+        "TroubleshootingAppSettingsFailureFingerprint",
+        "OpenHttpUrlConnectionFingerprint"
     )
     
     for (name in fingerprints) {
