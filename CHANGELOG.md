@@ -1,3 +1,9 @@
+## [1.6.15-dev.7](https://github.com/bufferk/morphe-patches/compare/v1.6.15-dev.6...v1.6.15-dev.7) (2026-07-10)
+
+### 🐛 Bug Fixes
+
+* **mygate:** rewrite firebase Installations cert spoof to avoid NPEs ([4f7238f](https://github.com/bufferk/morphe-patches/commit/4f7238f5517954e9647757de147f71087a2eb48f))
+
 ## [1.6.15-dev.6](https://github.com/bufferk/morphe-patches/compare/v1.6.15-dev.5...v1.6.15-dev.6) (2026-07-06)
 
 ### 🐛 Bug Fixes
