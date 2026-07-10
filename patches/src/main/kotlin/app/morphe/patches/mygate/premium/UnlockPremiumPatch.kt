@@ -250,13 +250,22 @@ val unlockPremiumPatch = bytecodePatch(
                 var addRequestPropertyInstruction: BuilderInstruction? = null
                 for (i in xAndroidCertIndex until instructions.size) {
                     val instr = instructions[i] ?: continue
-                    if (instr.opcode == Opcode.INVOKE_VIRTUAL) {
-                        val ref = (instr as? ReferenceInstruction)?.reference as? MethodReference
-                        if (ref?.name == "addRequestProperty") {
-                            addRequestPropertyInstruction = instr
-                            break
+                     if (instr.opcode == Opcode.INVOKE_VIRTUAL) {
+                        try {
+                            val getReferenceMethod = instr.javaClass.methods.firstOrNull { it.name == "getReference" }
+                            val reference = getReferenceMethod?.invoke(instr)
+                            if (reference != null) {
+                                val getNameMethod = reference.javaClass.methods.firstOrNull { it.name == "getName" }
+                                val name = getNameMethod?.invoke(reference) as? String
+                                if (name == "addRequestProperty") {
+                                    addRequestPropertyInstruction = instr
+                                    break
+                                }
+                            }
+                        } catch (e: Exception) {
+                            // Ignore reflection errors and continue
                         }
-                    }
+                     }
                 }
 
                 if (addRequestPropertyInstruction != null) {
