@@ -1,3 +1,14 @@
+## [1.7.0-dev.1](https://github.com/bufferk/morphe-patches/compare/v1.6.15-dev.6...v1.7.0-dev.1) (2026-07-17)
+
+### 🐛 Bug Fixes
+
+* **mygate:** rewrite firebase Installations cert spoof to avoid NPEs ([4f7238f](https://github.com/bufferk/morphe-patches/commit/4f7238f5517954e9647757de147f71087a2eb48f))
+* **mygate:** rewrite firebase installations cert spoof using reflection to bypass R8 optimization NPEs on ART ([f54572a](https://github.com/bufferk/morphe-patches/commit/f54572aab33a90152c88a15f0bbf2fbbc5ae2246))
+
+### ✨ New Features
+
+* patch brave app ([a8ef687](https://github.com/bufferk/morphe-patches/commit/a8ef687d5a06874b6de60a7de6ddf4848f81c57f))
+
 ## [1.6.15-dev.7](https://github.com/bufferk/morphe-patches/compare/v1.6.15-dev.6...v1.6.15-dev.7) (2026-07-10)
 
 ### 🐛 Bug Fixes

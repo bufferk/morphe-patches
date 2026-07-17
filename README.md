@@ -76,7 +76,7 @@ This repository provides custom, community-developed bytecode patches for variou
 ## 🩹 Patches
 
 <!-- PATCHES_START EXPANDED -->
-> **[v1.6.15-dev.7](https://github.com/bufferk/morphe-patches/releases/tag/v1.6.15-dev.7)**&nbsp;&nbsp;•&nbsp;&nbsp;`dev`&nbsp;&nbsp;•&nbsp;&nbsp;14 patches total
+> **[v1.7.0-dev.1](https://github.com/bufferk/morphe-patches/releases/tag/v1.7.0-dev.1)**&nbsp;&nbsp;•&nbsp;&nbsp;`dev`&nbsp;&nbsp;•&nbsp;&nbsp;15 patches total
 <details open>
 <summary>📦 Bounce Companion&nbsp;&nbsp;•&nbsp;&nbsp;1 patch</summary>
 <br>
@@ -110,6 +110,16 @@ This repository provides custom, community-developed bytecode patches for variou
 | [Hide premium upgrade prompts](#hide-premium-upgrade-prompts) | Removes 'Get Premium' and 'Switch to Premium' buttons from the nav bar, settings, and profile. |  |
 | [Mock premium](#mock-premium) | Always shows the premium/gold badge and unlocks premium UI features. |  |
 | [Remove Premium UI](#remove-premium-ui) | Removes the Premium tab from the bottom navigation bar and the Premium row in the profile section. |  |
+
+</details>
+
+<details open>
+<summary>📦 Brave Browser&nbsp;&nbsp;•&nbsp;&nbsp;1 patch</summary>
+<br>
+
+| 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
+|----------|----------------|-----------|
+| [Enable Brave Origin](#enable-brave-origin) | Enables Brave Origin features by default. |  |
 
 </details>
 
