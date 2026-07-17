@@ -62,6 +62,32 @@
       "options": []
     },
     {
+      "name": "Enable Brave Origin",
+      "description": "Enables Brave Origin features by default.",
+      "default": true,
+      "dependencies": [],
+      "compatiblePackages": [
+        {
+          "packageName": "com.brave.browser",
+          "name": "Brave Browser",
+          "description": null,
+          "apkFileType": "APK",
+          "appIconColor": "#FF4500",
+          "signatures": null,
+          "targets": [
+            {
+              "version": null,
+              "versionCodes": null,
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
       "name": "Enable premium features",
       "description": "Unlocks all client-side premium features by bypassing the feature-availability gate.",
       "default": true,
