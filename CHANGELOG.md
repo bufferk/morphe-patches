@@ -1,3 +1,9 @@
+## [1.8.0-dev.1](https://github.com/bufferk/morphe-patches/compare/v1.7.1...v1.8.0-dev.1) (2026-07-18)
+
+### ✨ New Features
+
+* merge mygate patches into single patch, fix workflows, update version to 7.31.0 ([f23039c](https://github.com/bufferk/morphe-patches/commit/f23039c22616311677d68acc394ead875ba91113))
+
 ## [1.7.1](https://github.com/bufferk/morphe-patches/compare/v1.7.0...v1.7.1) (2026-07-18)
 
 ### 🐛 Bug Fixes

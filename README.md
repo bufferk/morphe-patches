@@ -76,7 +76,7 @@ This repository provides custom, community-developed bytecode patches for variou
 ## 🩹 Patches
 
 <!-- PATCHES_START EXPANDED -->
-> **[v1.7.1](https://github.com/bufferk/morphe-patches/releases/tag/v1.7.1)**&nbsp;&nbsp;•&nbsp;&nbsp;`main`&nbsp;&nbsp;•&nbsp;&nbsp;15 patches total
+> **[v1.8.0-dev.1](https://github.com/bufferk/morphe-patches/releases/tag/v1.8.0-dev.1)**&nbsp;&nbsp;•&nbsp;&nbsp;`dev`&nbsp;&nbsp;•&nbsp;&nbsp;13 patches total
 <details open>
 <summary>📦 Brave Browser&nbsp;&nbsp;•&nbsp;&nbsp;1 patch</summary>
 <br>
@@ -129,23 +129,6 @@ This repository provides custom, community-developed bytecode patches for variou
 </details>
 
 <details open>
-<summary>📦 MyGate&nbsp;&nbsp;•&nbsp;&nbsp;3 patches</summary>
-<br>
-
-**🎯 Supported versions:**
-
-| 7.26.1 |
-| :---: |
-
-| 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
-|----------|----------------|-----------|
-| [Flutter Premium Bypass](#flutter-premium-bypass) | Forces premium status inside the JSON payload sent to Flutter |  |
-| [Hide ads](#hide-ads) | Removes MyGate in-app ads (pre-approval screen, allow-entries screen, activity feed, and visitor profile masthead). |  |
-| [Unlock premium](#unlock-premium) | Unlocks all MyGate premium features: spoofs USER_PREMIUM_PLAN status, suppresses upgrade dialogs and paywalls, enables frequent pre-approvals for deliveries, cabs and visiting help, unlocks surprise delivery and the always-approve-entries toggle. |  |
-
-</details>
-
-<details open>
 <summary>📦 Medium&nbsp;&nbsp;•&nbsp;&nbsp;1 patch</summary>
 <br>
 
@@ -157,6 +140,21 @@ This repository provides custom, community-developed bytecode patches for variou
 | 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
 |----------|----------------|-----------|
 | [Freedium](#freedium) | Adds a profile setting to choose the Freedium Mirror host, and a floating button on articles that opens the current article using the chosen Freedium Mirror in a webview. |  |
+
+</details>
+
+<details open>
+<summary>📦 MyGate&nbsp;&nbsp;•&nbsp;&nbsp;1 patch</summary>
+<br>
+
+**🎯 Supported versions:**
+
+| 7.31.0 | 7.26.1 |
+| :---: | :---: |
+
+| 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
+|----------|----------------|-----------|
+| [MyGate](#mygate) | Unlocks MyGate premium, removes ads, fixes notifications and e-Intercom. |  |
 
 </details>
 
