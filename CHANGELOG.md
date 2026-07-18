@@ -1,3 +1,9 @@
+## [1.7.1](https://github.com/bufferk/morphe-patches/compare/v1.7.0...v1.7.1) (2026-07-18)
+
+### 🐛 Bug Fixes
+
+* **brave:** Fixed XML resource issue for Brave Patch ([#17](https://github.com/bufferk/morphe-patches/issues/17)) ([0c0ada3](https://github.com/bufferk/morphe-patches/commit/0c0ada3dfeaad7e741e46e66e104795fea2e07e1))
+
 ## [1.8.0-dev.1](https://github.com/bufferk/morphe-patches/compare/v1.7.0...v1.8.0-dev.1) (2026-07-18)
 
 ### 🐛 Bug Fixes
