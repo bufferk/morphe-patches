@@ -1,7 +1,7 @@
 {
-  "created_at": "2026-07-18T08:37:30",
-  "description": "## [1.7.0-dev.2](https://github.com/bufferk/morphe-patches/compare/v1.7.0-dev.1...v1.7.0-dev.2) (2026-07-18)\n\n### 🐛 Bug Fixes\n\n* fixed brave patch ([94e4cce](https://github.com/bufferk/morphe-patches/commit/94e4ccea7164af340ac27b19bda4a899a8b79b9e))",
-  "download_url": "https://github.com/bufferk/morphe-patches/releases/download/v1.7.0-dev.2/patches-1.7.0-dev.2.mpp",
+  "created_at": "2026-07-18T08:41:33",
+  "description": "## [1.7.0-dev.3](https://github.com/bufferk/morphe-patches/compare/v1.7.0-dev.2...v1.7.0-dev.3) (2026-07-18)\n\n### 🐛 Bug Fixes\n\n* fixed pipeline ([414946d](https://github.com/bufferk/morphe-patches/commit/414946d61bc30e97e9f171e298c31fa29081be36))",
+  "download_url": "https://github.com/bufferk/morphe-patches/releases/download/v1.7.0-dev.3/patches-1.7.0-dev.3.mpp",
   "signature_download_url": "",
-  "version": "1.7.0-dev.2"
+  "version": "1.7.0-dev.3"
 }

@@ -1,3 +1,9 @@
+## [1.7.0-dev.3](https://github.com/bufferk/morphe-patches/compare/v1.7.0-dev.2...v1.7.0-dev.3) (2026-07-18)
+
+### 🐛 Bug Fixes
+
+* fixed pipeline ([414946d](https://github.com/bufferk/morphe-patches/commit/414946d61bc30e97e9f171e298c31fa29081be36))
+
 ## [1.7.0-dev.2](https://github.com/bufferk/morphe-patches/compare/v1.7.0-dev.1...v1.7.0-dev.2) (2026-07-18)
 
 ### 🐛 Bug Fixes
