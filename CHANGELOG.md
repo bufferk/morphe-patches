@@ -1,3 +1,9 @@
+## [1.7.0-dev.2](https://github.com/bufferk/morphe-patches/compare/v1.7.0-dev.1...v1.7.0-dev.2) (2026-07-18)
+
+### 🐛 Bug Fixes
+
+* fixed brave patch ([94e4cce](https://github.com/bufferk/morphe-patches/commit/94e4ccea7164af340ac27b19bda4a899a8b79b9e))
+
 ## [1.7.0-dev.1](https://github.com/bufferk/morphe-patches/compare/v1.6.15-dev.6...v1.7.0-dev.1) (2026-07-17)
 
 ### 🐛 Bug Fixes
