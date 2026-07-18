@@ -1,7 +1,7 @@
 {
-  "created_at": "2026-07-18T08:41:33",
-  "description": "## [1.7.0-dev.3](https://github.com/bufferk/morphe-patches/compare/v1.7.0-dev.2...v1.7.0-dev.3) (2026-07-18)\n\n### 🐛 Bug Fixes\n\n* fixed pipeline ([414946d](https://github.com/bufferk/morphe-patches/commit/414946d61bc30e97e9f171e298c31fa29081be36))",
-  "download_url": "https://github.com/bufferk/morphe-patches/releases/download/v1.7.0-dev.3/patches-1.7.0-dev.3.mpp",
+  "created_at": "2026-07-18T08:54:45",
+  "description": "## [1.7.0](https://github.com/bufferk/morphe-patches/compare/v1.6.11...v1.7.0) (2026-07-18)\n\n### 🐛 Bug Fixes\n\n* **mygate:** make ShowUpgradeDialogFingerprint dynamic to bypass method z obfuscation ([1cfb5b9](https://github.com/bufferk/morphe-patches/commit/1cfb5b9b53e430e3812da1bd951f5d4ad091c796))\n\n### ✨ New Features\n\n* Brave Browser Origin Unlocked and some MyGate fixes ([#15](https://github.com/bufferk/morphe-patches/issues/15)) ([fb1e24a](https://github.com/bufferk/morphe-patches/commit/fb1e24a838ef0dda09066a76f3d0e826090421a0))",
+  "download_url": "https://github.com/bufferk/morphe-patches/releases/download/v1.7.0/patches-1.7.0.mpp",
   "signature_download_url": "",
-  "version": "1.7.0-dev.3"
+  "version": "1.7.0"
 }

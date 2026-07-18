@@ -1,3 +1,13 @@
+## [1.7.0](https://github.com/bufferk/morphe-patches/compare/v1.6.11...v1.7.0) (2026-07-18)
+
+### 🐛 Bug Fixes
+
+* **mygate:** make ShowUpgradeDialogFingerprint dynamic to bypass method z obfuscation ([1cfb5b9](https://github.com/bufferk/morphe-patches/commit/1cfb5b9b53e430e3812da1bd951f5d4ad091c796))
+
+### ✨ New Features
+
+* Brave Browser Origin Unlocked and some MyGate fixes ([#15](https://github.com/bufferk/morphe-patches/issues/15)) ([fb1e24a](https://github.com/bufferk/morphe-patches/commit/fb1e24a838ef0dda09066a76f3d0e826090421a0))
+
 ## [1.7.0-dev.3](https://github.com/bufferk/morphe-patches/compare/v1.7.0-dev.2...v1.7.0-dev.3) (2026-07-18)
 
 ### 🐛 Bug Fixes
