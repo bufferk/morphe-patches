@@ -6,6 +6,13 @@
  */
 package app.morphe.patches.mygate.premium
 
+import com.android.tools.smali.dexlib2.Opcode
+import com.android.tools.smali.dexlib2.builder.BuilderInstruction
+import com.android.tools.smali.dexlib2.iface.instruction.FiveRegisterInstruction
+import com.android.tools.smali.dexlib2.iface.instruction.ReferenceInstruction
+import com.android.tools.smali.dexlib2.iface.reference.MethodReference
+import app.morphe.patcher.extensions.InstructionExtensions.addInstruction
+import app.morphe.patcher.extensions.InstructionExtensions.instructions
 import app.morphe.patcher.extensions.InstructionExtensions.addInstructions
 import app.morphe.patcher.extensions.InstructionExtensions.removeInstructions
 import app.morphe.patcher.patch.bytecodePatch
@@ -170,11 +177,20 @@ val unlockPremiumPatch = bytecodePatch(
         // success and failure methods to completely ignore the real API response and
         // ALWAYS emit a valid, non-null NotificationSettings object. This ensures `X` 
         // in the fragment is never null, allowing our boolean getters to do their job.
+        val viewModelClass = classDefBy("Lcom/mygate/user/modules/testnotification/ui/viewmodel/TestNotificationTroubleshootingViewModel;")
+        val liveDataField = viewModelClass.fields.first { it.name == "c" }
+        val liveDataClassName = liveDataField.type
+        
+        val liveDataClass = classDefBy(liveDataClassName)
+        val liveDataMethodName = liveDataClass.methods
+            .firstOrNull { it.parameterTypes.size == 1 && it.parameterTypes[0] == "Ljava/lang/Object;" && it.returnType == "V" }
+            ?.name ?: "l"
+
         val emitFakeNotificationSettings = """
             new-instance v0, Lcom/mygate/user/modules/notifications/entity/NotificationSettings;
             invoke-direct {v0}, Lcom/mygate/user/modules/notifications/entity/NotificationSettings;-><init>()V
-            iget-object v1, p0, Lcom/mygate/user/modules/testnotification/ui/viewmodel/TestNotificationTroubleshootingViewModel;->c:Landroidx/lifecycle/MutableLiveData;
-            invoke-virtual {v1, v0}, Landroidx/lifecycle/LiveData;->j(Ljava/lang/Object;)V
+            iget-object v1, p0, Lcom/mygate/user/modules/testnotification/ui/viewmodel/TestNotificationTroubleshootingViewModel;->c:$liveDataClassName
+            invoke-virtual {v1, v0}, $liveDataClassName->$liveDataMethodName(Ljava/lang/Object;)V
             return-void
         """.trimIndent()
 
@@ -186,6 +202,85 @@ val unlockPremiumPatch = bytecodePatch(
         TroubleshootingSettingsFailureFingerprint.method.apply {
             removeInstructions(0)
             addInstructions(0, emitFakeNotificationSettings)
+        }
+
+        val appLiveDataField = TroubleshootingAppSettingsSuccessFingerprint.method.implementation!!.instructions
+            .filterIsInstance<com.android.tools.smali.dexlib2.iface.instruction.ReferenceInstruction>()
+            .map { it.reference }
+            .filterIsInstance<com.android.tools.smali.dexlib2.iface.reference.FieldReference>()
+            .first()
+        val appLiveDataFieldName = appLiveDataField.name
+        val appLiveDataClassName = appLiveDataField.type
+
+        val emitFakeAppNotificationSettings = """
+            new-instance v0, Ljava/util/ArrayList;
+            invoke-direct {v0}, Ljava/util/ArrayList;-><init>()V
+            const/4 v1, 0x1
+            invoke-static {v1}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
+            move-result-object v1
+            new-instance v2, Lcom/mygate/user/modules/notifications/entity/AppNotificationSettings;
+            const-string v3, ""
+            invoke-direct {v2, v1, v3, v0}, Lcom/mygate/user/modules/notifications/entity/AppNotificationSettings;-><init>(Ljava/lang/Integer;Ljava/lang/String;Ljava/util/List;)V
+            iget-object v1, p0, Lcom/mygate/user/modules/testnotification/ui/viewmodel/TestNotificationTroubleshootingViewModel;->$appLiveDataFieldName:$appLiveDataClassName
+            invoke-virtual {v1, v2}, $appLiveDataClassName->$liveDataMethodName(Ljava/lang/Object;)V
+            return-void
+        """.trimIndent()
+
+        TroubleshootingAppSettingsSuccessFingerprint.method.apply {
+            removeInstructions(0)
+            addInstructions(0, emitFakeAppNotificationSettings)
+        }
+
+        TroubleshootingAppSettingsFailureFingerprint.method.apply {
+            removeInstructions(0)
+            addInstructions(0, emitFakeAppNotificationSettings)
+        }
+
+        // ── 11. Spoof Firebase installations certificate fingerprint hash ────────────
+        // Re-signing the APK breaks Firebase push notifications because Firebase checks
+        // that the X-Android-Cert header matches the original certificate hash.
+        // We override the header value at runtime to use the original developer cert's SHA-1.
+        OpenHttpUrlConnectionFingerprint.method.apply {
+            val originalCertHash = "AAB7E367980DA927FB146E862057CC87CD766987"
+            
+            // 1. Find the index of the instruction containing the string "X-Android-Cert"
+            val xAndroidCertIndex = OpenHttpUrlConnectionFingerprint.stringMatches.firstOrNull()?.index
+            if (xAndroidCertIndex != null) {
+                // 2. Scan forward to find the next call to HttpURLConnection.addRequestProperty
+                var addRequestPropertyInstruction: BuilderInstruction? = null
+                for (i in xAndroidCertIndex until instructions.size) {
+                    val instr = instructions[i] ?: continue
+                     if (instr.opcode == Opcode.INVOKE_VIRTUAL) {
+                        try {
+                            val getReferenceMethod = instr.javaClass.methods.firstOrNull { it.name == "getReference" }
+                            val reference = getReferenceMethod?.invoke(instr)
+                            if (reference != null) {
+                                val getNameMethod = reference.javaClass.methods.firstOrNull { it.name == "getName" }
+                                val name = getNameMethod?.invoke(reference) as? String
+                                if (name == "addRequestProperty") {
+                                    addRequestPropertyInstruction = instr
+                                    break
+                                }
+                            }
+                        } catch (e: Exception) {
+                            // Ignore reflection errors and continue
+                        }
+                     }
+                }
+
+                if (addRequestPropertyInstruction != null) {
+                    // 3. Extract the register index for parameter 2 (registerE in FiveRegisterInstruction)
+                    val valueRegister = (addRequestPropertyInstruction as FiveRegisterInstruction).registerE
+                    
+                    // 4. Inject const-string instruction before the invoke-virtual instruction to override the cert hash
+                    addInstruction(
+                        index = addRequestPropertyInstruction.location.index,
+                        smaliInstructions = """
+                            const-string v$valueRegister, "$originalCertHash"
+                        """
+                    )
+                }
+            }
         }
     }
 }

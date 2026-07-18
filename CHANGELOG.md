@@ -1,8 +1,92 @@
+## [1.7.0-dev.3](https://github.com/bufferk/morphe-patches/compare/v1.7.0-dev.2...v1.7.0-dev.3) (2026-07-18)
+
+### 🐛 Bug Fixes
+
+* fixed pipeline ([414946d](https://github.com/bufferk/morphe-patches/commit/414946d61bc30e97e9f171e298c31fa29081be36))
+
+## [1.7.0-dev.2](https://github.com/bufferk/morphe-patches/compare/v1.7.0-dev.1...v1.7.0-dev.2) (2026-07-18)
+
+### 🐛 Bug Fixes
+
+* fixed brave patch ([94e4cce](https://github.com/bufferk/morphe-patches/commit/94e4ccea7164af340ac27b19bda4a899a8b79b9e))
+
+## [1.7.0-dev.1](https://github.com/bufferk/morphe-patches/compare/v1.6.15-dev.6...v1.7.0-dev.1) (2026-07-17)
+
+### 🐛 Bug Fixes
+
+* **mygate:** rewrite firebase Installations cert spoof to avoid NPEs ([4f7238f](https://github.com/bufferk/morphe-patches/commit/4f7238f5517954e9647757de147f71087a2eb48f))
+* **mygate:** rewrite firebase installations cert spoof using reflection to bypass R8 optimization NPEs on ART ([f54572a](https://github.com/bufferk/morphe-patches/commit/f54572aab33a90152c88a15f0bbf2fbbc5ae2246))
+
+### ✨ New Features
+
+* patch brave app ([a8ef687](https://github.com/bufferk/morphe-patches/commit/a8ef687d5a06874b6de60a7de6ddf4848f81c57f))
+
+## [1.6.15-dev.7](https://github.com/bufferk/morphe-patches/compare/v1.6.15-dev.6...v1.6.15-dev.7) (2026-07-10)
+
+### 🐛 Bug Fixes
+
+* **mygate:** rewrite firebase Installations cert spoof to avoid NPEs ([4f7238f](https://github.com/bufferk/morphe-patches/commit/4f7238f5517954e9647757de147f71087a2eb48f))
+* **mygate:** rewrite firebase installations cert spoof using reflection to bypass R8 optimization NPEs on ART ([f54572a](https://github.com/bufferk/morphe-patches/commit/f54572aab33a90152c88a15f0bbf2fbbc5ae2246))
+
+## [1.6.15-dev.7](https://github.com/bufferk/morphe-patches/compare/v1.6.15-dev.6...v1.6.15-dev.7) (2026-07-10)
+
+### 🐛 Bug Fixes
+
+* **mygate:** rewrite firebase Installations cert spoof to avoid NPEs ([4f7238f](https://github.com/bufferk/morphe-patches/commit/4f7238f5517954e9647757de147f71087a2eb48f))
+
+## [1.6.15-dev.6](https://github.com/bufferk/morphe-patches/compare/v1.6.15-dev.5...v1.6.15-dev.6) (2026-07-06)
+
+### 🐛 Bug Fixes
+
+* **mygate:** fake app notification settings response to resolve e-intercom troubleshooting failure ([e72ca83](https://github.com/bufferk/morphe-patches/commit/e72ca83495cc2df4670a17c54a233ec2bd5feccc))
+
+## [1.6.15-dev.5](https://github.com/bufferk/morphe-patches/compare/v1.6.15-dev.4...v1.6.15-dev.5) (2026-07-06)
+
+### 🐛 Bug Fixes
+
+* **mygate:** remove double semicolon in dynamic invoke-virtual smali template ([dabd1fb](https://github.com/bufferk/morphe-patches/commit/dabd1fbaf34c8f12a803a83d10355faf1bdd8ca3))
+
+## [1.6.15-dev.4](https://github.com/bufferk/morphe-patches/compare/v1.6.15-dev.3...v1.6.15-dev.4) (2026-07-06)
+
+### 🐛 Bug Fixes
+
+* **mygate:** dynamically resolve both LiveData class name and method name to support obfuscated configurations ([afff4b4](https://github.com/bufferk/morphe-patches/commit/afff4b409fc5bbf6ae0a1a8df2e5bce5e2fc37ed))
+
+## [1.6.15-dev.3](https://github.com/bufferk/morphe-patches/compare/v1.6.15-dev.2...v1.6.15-dev.3) (2026-07-06)
+
+### 🐛 Bug Fixes
+
+* **mygate:** directly query MutableLiveData class def to resolve setValue/postValue method name ([87b70cd](https://github.com/bufferk/morphe-patches/commit/87b70cd4dec5d1497a1a2c6fa239a6eafcd8a974))
+
+## [1.6.15-dev.2](https://github.com/bufferk/morphe-patches/compare/v1.6.15-dev.1...v1.6.15-dev.2) (2026-07-06)
+
+### 🐛 Bug Fixes
+
+* **mygate:** dynamically resolve obfuscated MutableLiveData.setValue method in test notification spoofing ([d6dbf80](https://github.com/bufferk/morphe-patches/commit/d6dbf800291b4b42cd5e6d8489b5b02dec2e00c1))
+
+## [1.6.15-dev.1](https://github.com/bufferk/morphe-patches/compare/v1.6.14...v1.6.15-dev.1) (2026-07-06)
+
+### 🐛 Bug Fixes
+
+* **mygate:** make ShowUpgradeDialogFingerprint parameter-agnostic for robust matching across versions ([f8970f4](https://github.com/bufferk/morphe-patches/commit/f8970f4ca3248b8d36a1ad5504a5f4bf44e562ff))
+
+## [1.6.14](https://github.com/bufferk/morphe-patches/compare/v1.6.13...v1.6.14) (2026-07-06)
+
+### 🐛 Bug Fixes
+
+* **mygate:** use robust Dialog.show methodCall filter for ShowUpgradeDialogFingerprint to bypass log stripping ([7c8f763](https://github.com/bufferk/morphe-patches/commit/7c8f7637e7f3e2d11c9ff249154a36303751b755))
+
+## [1.6.13](https://github.com/bufferk/morphe-patches/compare/v1.6.12...v1.6.13) (2026-07-05)
+
+### 🐛 Bug Fixes
+
+* **mygate:** make ShowUpgradeDialogFingerprint matching string-based to prevent obfuscated ViewBinding mismatch ([17eeddd](https://github.com/bufferk/morphe-patches/commit/17eeddd9708754d585976c56dc3ec02e64128f17))
+
 ## [1.6.12](https://github.com/bufferk/morphe-patches/compare/v1.6.11...v1.6.12) (2026-07-05)
 
 ### 🐛 Bug Fixes
 
-* **mygate:** make ShowUpgradeDialogFingerprint dynamic to bypass method z obfuscation ([1cfb5b9](https://github.com/bufferk/morphe-patches/commit/1cfb5b9b53e430e3812da1bd951f5d4ad091c796))
+* **mygate:** make ShowUpgradeDialogFingerprint dynamic to bypass method z obfuscation ([9fca981](https://github.com/bufferk/morphe-patches/commit/9fca981a6f7bab44aac16524806474d5d9f62381))
 
 ## [1.6.11](https://github.com/bufferk/morphe-patches/compare/v1.6.10...v1.6.11) (2026-07-05)
 

@@ -21,6 +21,7 @@ kotlin {
 dependencies {
     // Used by JsonGenerator.
     implementation(libs.gson)
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.8.0")
 }
 
 tasks {
@@ -31,6 +32,14 @@ tasks {
 
         classpath = sourceSets["main"].runtimeClasspath
         mainClass.set("util.PatchListGeneratorKt")
+    }
+    register<JavaExec>("runPatchRunner") {
+        description = "Run patcher locally on MyGate APK"
+
+        dependsOn(build)
+
+        classpath = sourceSets["main"].runtimeClasspath
+        mainClass.set("util.PatchRunnerKt")
     }
     // Used by gradle-semantic-release-plugin.
     publish {

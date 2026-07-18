@@ -76,7 +76,22 @@ This repository provides custom, community-developed bytecode patches for variou
 ## 🩹 Patches
 
 <!-- PATCHES_START EXPANDED -->
-> **[v1.6.12](https://github.com/bufferk/morphe-patches/releases/tag/v1.6.12)**&nbsp;&nbsp;•&nbsp;&nbsp;`main`&nbsp;&nbsp;•&nbsp;&nbsp;14 patches total
+> **[v1.7.0-dev.3](https://github.com/bufferk/morphe-patches/releases/tag/v1.7.0-dev.3)**&nbsp;&nbsp;•&nbsp;&nbsp;`dev`&nbsp;&nbsp;•&nbsp;&nbsp;15 patches total
+<details open>
+<summary>📦 Brave Browser&nbsp;&nbsp;•&nbsp;&nbsp;1 patch</summary>
+<br>
+
+**🎯 Supported versions:**
+
+| 1.92.140 |
+| :---: |
+
+| 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
+|----------|----------------|-----------|
+| [Brave Origin](#brave-origin) | Unlocks Brave Origin and enables feature toggle controls. |  |
+
+</details>
+
 <details open>
 <summary>📦 Bounce Companion&nbsp;&nbsp;•&nbsp;&nbsp;1 patch</summary>
 <br>

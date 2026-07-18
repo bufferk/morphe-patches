@@ -63,15 +63,17 @@ internal object GetCombinedUserPlanStatusFingerprint : Fingerprint(
 internal object ShowUpgradeDialogFingerprint : Fingerprint(
     definingClass = "Lcom/mygate/user/utilities/KotlinUtils\$Companion;",
     returnType = "V",
-    parameters = listOf("Landroidx/fragment/app/FragmentActivity;"),
     filters = listOf(
         app.morphe.patcher.methodCall(
-            definingClass = "Lcom/mygate/user/databinding/LayoutUpgradePremiumBinding;",
-            name = "a",
-            returnType = "Lcom/mygate/user/databinding/LayoutUpgradePremiumBinding;",
-            parameters = listOf("Landroid/view/View;")
+            definingClass = "Landroid/app/Dialog;",
+            name = "show",
+            returnType = "V",
+            parameters = emptyList()
         )
-    )
+    ),
+    custom = { method, _ ->
+        method.parameters.size == 1
+    }
 )
 
 /**
@@ -223,4 +225,39 @@ internal object TroubleshootingSettingsFailureFingerprint : Fingerprint(
     name = "onNotificationSettingsManagerFailure",
     returnType = "V",
     parameters = listOf("Lcom/mygate/user/modules/notifications/events/manager/INotificationSettingsManagerFailureEvent;")
+)
+
+/**
+ * Fingerprint for TestNotificationTroubleshootingViewModel.onNotificationSettingsManagerSuccess(IGetAppNotificationSettingManagerSuccess)
+ */
+internal object TroubleshootingAppSettingsSuccessFingerprint : Fingerprint(
+    definingClass = "Lcom/mygate/user/modules/testnotification/ui/viewmodel/TestNotificationTroubleshootingViewModel;",
+    name = "onNotificationSettingsManagerSuccess",
+    returnType = "V",
+    parameters = listOf("Lcom/mygate/user/modules/notifications/events/manager/IGetAppNotificationSettingManagerSuccess;")
+)
+
+/**
+ * Fingerprint for TestNotificationTroubleshootingViewModel.onNotificationSettingsManagerFailure(IGetAppNotificationSettingManagerFailure)
+ */
+internal object TroubleshootingAppSettingsFailureFingerprint : Fingerprint(
+    definingClass = "Lcom/mygate/user/modules/testnotification/ui/viewmodel/TestNotificationTroubleshootingViewModel;",
+    name = "onNotificationSettingsManagerFailure",
+    returnType = "V",
+    parameters = listOf("Lcom/mygate/user/modules/notifications/events/manager/IGetAppNotificationSettingManagerFailure;")
+)
+
+/**
+ * Fingerprint for the Firebase installations openHttpURLConnection method.
+ */
+internal object OpenHttpUrlConnectionFingerprint : Fingerprint(
+    returnType = "Ljava/net/HttpURLConnection;",
+    parameters = listOf(
+        "Ljava/net/URL;",
+        "Ljava/lang/String;"
+    ),
+    strings = listOf(
+        "X-Android-Cert",
+        "Firebase Installations Service is unavailable. Please try again later."
+    )
 )
