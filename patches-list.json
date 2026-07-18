@@ -71,7 +71,7 @@
           "packageName": "com.brave.browser",
           "name": "Brave Browser",
           "description": null,
-          "apkFileType": "APK",
+          "apkFileType": "APKM",
           "appIconColor": "#FF4500",
           "signatures": null,
           "targets": [
