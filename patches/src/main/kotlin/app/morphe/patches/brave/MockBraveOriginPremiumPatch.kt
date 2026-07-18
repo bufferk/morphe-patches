@@ -51,7 +51,16 @@ private val braveOriginResourcePatch = resourcePatch(
             "wallet_switch",
             "web_discovery_project_switch",
         )
-        document("res/xml/0Fw.xml").use { doc ->
+        // The preferences XML filename is obfuscated and changes between Brave versions.
+        // Find the correct file by scanning all res/xml/*.xml files for our switch keys.
+        val xmlDir = get("res/xml")
+        val targetFile = xmlDir.listFiles()
+            ?.filter { it.extension == "xml" }
+            ?.firstOrNull { file ->
+                file.readText().contains("rewards_switch")
+            } ?: return@execute
+
+        document(targetFile.absolutePath).use { doc ->
             val elements = doc.getElementsByTagName("*")
             for (i in 0 until elements.length) {
                 val node = elements.item(i) as? Element ?: continue
