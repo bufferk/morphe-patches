@@ -1,3 +1,9 @@
+## [1.8.0](https://github.com/bufferk/morphe-patches/compare/v1.7.1...v1.8.0) (2026-07-18)
+
+### ✨ New Features
+
+* **mygate:** Introducing MyGate Premium Patch ([#19](https://github.com/bufferk/morphe-patches/issues/19)) ([ff0953b](https://github.com/bufferk/morphe-patches/commit/ff0953bf3219fab9a14841c2fee258cfbb85094c))
+
 ## [1.8.0-dev.1](https://github.com/bufferk/morphe-patches/compare/v1.7.1...v1.8.0-dev.1) (2026-07-18)
 
 ### ✨ New Features
