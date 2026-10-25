@@ -4,7 +4,7 @@ import app.morphe.patcher.Fingerprint
 
 internal object SettingsFragmentFFingerprint : Fingerprint(
     definingClass = "Lcom/medium/android/settings/main/SettingsFragment;",
-    name = "F",
+    name = "H",
     returnType = "Landroid/view/View;",
     parameters = listOf(
         "Landroid/view/LayoutInflater;",
@@ -15,7 +15,7 @@ internal object SettingsFragmentFFingerprint : Fingerprint(
 
 internal object PostFragmentQFingerprint : Fingerprint(
     definingClass = "Lcom/medium/android/donkey/post/PostFragment;",
-    name = "Q",
+    name = "S",
     returnType = "V",
     parameters = listOf("Landroid/view/View;")
 )

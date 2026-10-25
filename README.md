@@ -76,7 +76,7 @@ This repository provides custom, community-developed bytecode patches for variou
 ## 🩹 Patches
 
 <!-- PATCHES_START EXPANDED -->
-> **[v1.8.0](https://github.com/bufferk/morphe-patches/releases/tag/v1.8.0)**&nbsp;&nbsp;•&nbsp;&nbsp;`main`&nbsp;&nbsp;•&nbsp;&nbsp;13 patches total
+> **[v1.9.0-dev.2](https://github.com/bufferk/morphe-patches/releases/tag/v1.9.0-dev.2)**&nbsp;&nbsp;•&nbsp;&nbsp;`dev`&nbsp;&nbsp;•&nbsp;&nbsp;13 patches total
 <details open>
 <summary>📦 Brave Browser&nbsp;&nbsp;•&nbsp;&nbsp;1 patch</summary>
 <br>
@@ -134,7 +134,7 @@ This repository provides custom, community-developed bytecode patches for variou
 
 **🎯 Supported versions:**
 
-| 4.5.1302097 |
+| 4.5.1784910928 |
 | :---: |
 
 | 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
@@ -149,8 +149,8 @@ This repository provides custom, community-developed bytecode patches for variou
 
 **🎯 Supported versions:**
 
-| 7.31.0 | 7.26.1 |
-| :---: | :---: |
+| 7.38.2 |
+| :---: |
 
 | 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
 |----------|----------------|-----------|
