@@ -1,3 +1,9 @@
+## [1.8.1](https://github.com/bufferk/morphe-patches/compare/v1.8.0...v1.8.1) (2026-10-25)
+
+### 🐛 Bug Fixes
+
+* trigger stable release with MyGate 7.38.2 and Medium 4.5.1784910928 ports ([f34861b](https://github.com/bufferk/morphe-patches/commit/f34861b9c08848b51ca098acf24c5bfb55a46dad))
+
 ## [1.9.0-dev.2](https://github.com/bufferk/morphe-patches/compare/v1.9.0-dev.1...v1.9.0-dev.2) (2026-10-25)
 
 ### 🐛 Bug Fixes
