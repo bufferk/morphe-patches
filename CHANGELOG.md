@@ -1,3 +1,9 @@
+## [1.9.0-dev.2](https://github.com/bufferk/morphe-patches/compare/v1.9.0-dev.1...v1.9.0-dev.2) (2026-10-25)
+
+### 🐛 Bug Fixes
+
+* port Freedium patch to 4.5.1784910928 ([2146c33](https://github.com/bufferk/morphe-patches/commit/2146c3308cc5d3b7cf8afe5275f95e17da00f530))
+
 ## [1.9.0-dev.1](https://github.com/bufferk/morphe-patches/compare/v1.8.0...v1.9.0-dev.1) (2026-10-07)
 
 ### 🐛 Bug Fixes
